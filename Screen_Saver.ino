@@ -123,8 +123,8 @@ void screenSaver(unsigned long Stop, int tSize, int cSize, int sSize, int Speed)
     sPosY += sDirY;
     tPosX += tDirX;
     tPosY += tDirY;
-    Serial.println(sPosX);
-    Serial.println(sPosY);
+    //    Serial.println(sPosX);
+    //    Serial.println(sPosY);
     Print = true;
     clearScreen();
     matrix.drawCircle(cPosX, cPosY, ceil(cSize / 2), matrix.Color(255, 255, 255));

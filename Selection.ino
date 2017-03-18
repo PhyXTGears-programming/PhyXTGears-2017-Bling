@@ -33,7 +33,7 @@ int selectRandArray () {
       if (i == 0) {
         both = true;
       }
-//      Serial.println("\n" + String(limitR) + "\n" + String(lastSame) + "\n" + String(both));
+      //      Serial.println("\n" + String(limitR) + "\n" + String(lastSame) + "\n" + String(both));
       if (both) {
         progRuns[val] = progRuns[val] + 1;
         blingPrograms[i] = val;

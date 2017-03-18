@@ -56,7 +56,7 @@ void sinWave (uint16_t color, int Delay, int n, float mult) {
     co = i * a;
     c = ceil(h - co);
     double r = sin(i * mult) * double(c);
-    Serial.println("X: " + String(i) + " Y: " + String(round(r) + 8) + " C: " + String(c, 9) + " CO: " + String(co));
+    //    Serial.println("X: " + String(i) + " Y: " + String(round(r) + 8) + " C: " + String(c, 9) + " CO: " + String(co));
     matrix.drawPixel(floor(i / n), (round(r) + 8), color);
     updateScreen();
     delay(Delay);
@@ -107,7 +107,7 @@ void spot (unsigned long Stop, int wide, int Delay, bool first) {
   int speedMaxRand = 1501;
   int speedAdd = 350;
   float speedD = 1000.0;
-  int speedMinDiff = 500;
+  int speedMinDiff = 600;
   //
   float sp = random(speedMaxRand);
   sp += speedAdd;
@@ -121,6 +121,7 @@ void spot (unsigned long Stop, int wide, int Delay, bool first) {
   float sp2 = random(speedMaxRand);
   if (abs(sp - sp2) < speedMinDiff) {
     while (abs(sp - sp2) < speedMinDiff) {
+      Serial.println("Speed reselection");
       sp2 = random(speedMaxRand);
     }
   }

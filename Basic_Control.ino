@@ -58,7 +58,7 @@ void runBling (int order[]) {
         }
         break;
       case 2:
-        printText("My name is Spitfire", co, 50, true, true, 1);
+        printText("I'm Spitfire", co, 50, true, true, 1);
         Reset();
         break;
       case 3:

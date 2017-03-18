@@ -23,7 +23,7 @@ void printBitmap(unsigned char b[]) {
   for (unsigned long i = 0; i < l; i++) {
     for (unsigned long j = 0; j < w; j++) {
       matrix.drawPixel(j, i, matrix.Color(b[pos + 1], b[pos + 1], b[pos + 0]));
-//      Serial.println("x: " + String(j) + ", y: " + String(i) + ", pos: " + String(pos));
+      //      Serial.println("x: " + String(j) + ", y: " + String(i) + ", pos: " + String(pos));
       pos += 3;
     }
   }

@@ -147,9 +147,9 @@ void loop() {
   //  Serial.println("done");
   //  delay(1000);
 
-//  spot(7000, 5, 10, true);
-//  Reset();
-//  delay(1000);
+  //  spot(7000, 5, 10, true);
+  //  Reset();
+  //  delay(1000);
 
   runBling(blingPrograms);
   Reset();
