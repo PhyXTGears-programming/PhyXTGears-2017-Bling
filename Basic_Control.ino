@@ -89,9 +89,9 @@ void runBling (int order[]) {
       case 8:
         screenSaver(4500, 8, 6, 7, 50);
         Reset();
-        matrix.setFont(&FreeSansBold12pt7b);
-        printText("First", co2, 21);
-        matrix.setFont(&FreeSerif12pt7b);
+        matrix.setFont(&FIRST_FONT);
+        printText("First", co2, 21, true, true, 0, 2);
+        matrix.setFont(&FONT);
         Reset();
         break;
       case 9:

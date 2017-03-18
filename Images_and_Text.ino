@@ -1,4 +1,6 @@
-void printText(String phrase, int color[], int run_time, bool scroll, bool upperCase, int Skip) {
+void printText(String phrase, int color[], int run_time, bool scroll, bool upperCase, int Skip, int pixOffset) {
+  int h = matrix.height() - 1;
+  h -= pixOffset;
   char p[phrase.length()];
   if (upperCase) {
     phrase.toUpperCase();
@@ -15,7 +17,7 @@ void printText(String phrase, int color[], int run_time, bool scroll, bool upper
   }
   for (int j = 0; j < run_time; j += Skip + 1) {
     clearScreen();
-    matrix.setCursor(x, (matrix.height() - 1));
+    matrix.setCursor(x, h);
     matrix.print(phrase);
     if ( scroll) {
       x -= Skip + 1;

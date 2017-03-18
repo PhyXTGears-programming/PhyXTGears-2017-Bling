@@ -4,7 +4,7 @@
 #include <Adafruit_GFX.h>
 #include <gfxfont.h>
 #include <Fonts/FreeMono12pt7b.h>
-#include <Fonts/FreeSansBold12pt7b.h>
+#include <Fonts/FreeSansBoldOblique9pt7b.h>
 #include <Fonts/FreeSerif12pt7b.h>
 #include <EEPROM.h>
 
@@ -28,6 +28,9 @@ const bool oneOfEach =      true;
 
 #define OVER                true
 #define BRIGHT              64
+
+#define FONT                FreeSerif12pt7b
+#define FIRST_FONT          FreeSansBoldOblique9pt7b
 
 //Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(WIDTH, HEIGHT, 1, NUMBER, MATRIX, NEO_TILE_TOP + NEO_TILE_LEFT + NEO_TILE_COLUMNS + NEO_TILE_ZIGZAG + NEO_MATRIX_COLUMNS + NEO_MATRIX_TOP + NEO_MATRIX_BOTTOM + NEO_MATRIX_ZIGZAG  + NEO_GRB + NEO_KHZ800);
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(WIDTH, HEIGHT, 1, NUMBER, MATRIX, NEO_TILE_BOTTOM + NEO_TILE_RIGHT + NEO_TILE_COLUMNS + NEO_TILE_ZIGZAG + NEO_MATRIX_COLUMNS + NEO_MATRIX_TOP + NEO_MATRIX_BOTTOM + NEO_MATRIX_ZIGZAG  + NEO_GRB + NEO_KHZ800);
@@ -71,7 +74,7 @@ int bright;
 // ==============================================
 
 void zigZag(unsigned long Stop, uint16_t color = matrix.Color(255, 255, 255), uint16_t color2 = matrix.Color(255, 255, 255), int d = 100, int gap = 1);
-void printText(String phrase, int color[], int run_time = 0, bool scroll = true, bool upperCase = true, int Skip = 0); //run_time should be set to at least 100 if your font is at 12pt
+void printText(String phrase, int color[], int run_time = 0, bool scroll = true, bool upperCase = true, int Skip = 0, int pixOffset = 0); //run_time should be set to at least 100 if your font is at 12pt
 void printBitMap(int b[], unsigned long Stop, bool scroll = false); //Prints from bitmap, "int b[]".
 void rectangleZoom(int x, int y, int width, int height, int color, int Delay = 99, bool noFill = false); //Creates rectangles inside rectangle one by one.
 void rainbow(); //Fills matrix with colors then cycles through color wheel. The rough time that this takes to execute is: 4 Seconds.
@@ -100,7 +103,7 @@ void setup() {
   gearString.show();
   matrix.setTextWrap(false); //Does weird things if you don't include this.
   matrix.setTextColor(matrix.Color(255, 0, 0));
-  matrix.setFont(&FreeSerif12pt7b);
+  matrix.setFont(&FONT);
   matrix.setBrightness(100);
   Serial.println("Microseconds: " + String(micros()));
   brightnessControl();
