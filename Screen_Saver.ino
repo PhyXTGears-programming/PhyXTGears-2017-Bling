@@ -109,9 +109,14 @@ void screenSaver(unsigned long Stop, int tSize, int cSize, int sSize, int Speed)
   delay(500);
   float speeds[3] = {0, 0, 0}; // C, S, T
   for (int i = 0; i < 3; i++) {
-    float s = random(16);
-    s += 5;
-    s = s / 10.0;
+    float s = random(76);
+    if (s <= 50) {
+      s += 50;
+    } else if (s > 50) {
+      s *= 2;
+    }
+    s += 30;
+    s = s / 100.0;
     speeds[i] = s;
     Serial.print("Speed " + String(i) + ": ");
     Serial.println(speeds[i]);

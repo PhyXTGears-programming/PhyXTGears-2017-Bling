@@ -258,5 +258,5 @@ void rectFromCenter (int centerX, int centerY, int radius, uint16_t color) {
   int a = radius * 2;
   a++;
   matrix.drawRect((centerX - radius), (centerY - radius), a, a, color);
-  Serial.println("X: " + String(centerX) + " Y: " + String(centerY) + " R: " + String(radius));
+//  Serial.println("X: " + String(centerX) + " Y: " + String(centerY) + " R: " + String(radius));
 }
