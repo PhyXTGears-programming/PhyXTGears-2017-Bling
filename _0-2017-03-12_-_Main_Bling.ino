@@ -46,9 +46,9 @@ int firstLogoW;
 // 0 and 2
 
 // 0: Dots
-// 1: Rectangle zoom
+// 1: Rectangle zoom (disabled)
 // 2: name
-// 3: fill for 0.25 sec
+// 3: fill for 0.25 sec (disabled)
 // 4: zig-zag
 // 5: strobe multi
 // 6: strobe white
@@ -57,7 +57,7 @@ int firstLogoW;
 // 9: Spotlight
 
 //                          // one of each true (false)
-int progLimit[PROGS] = {2, 1, 1, 0, 1, 2, 2, 2, 2, 1};  // Limit for each program (or ratio)
+int progLimit[PROGS] = {2, 0, 1, 0, 1, 2, 2, 2, 2, 1};  // Limit for each program (or ratio)
 int progRuns[PROGS];        // Number of times each has been selected (nothing)
 int blingPrograms[ToRUN];   // order
 

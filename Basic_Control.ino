@@ -52,10 +52,10 @@ void runBling (int order[]) {
         Reset();
         break;
       case 1:
-        for (int j = 0; j < 9; j++) {
-          rectangleZoom(0, 0, 40, 16, matrix.Color(0, 25, 112), 9, true);
-          Reset();
-        }
+//        for (int j = 0; j < 9; j++) {
+//          rectangleZoom(0, 0, 40, 16, matrix.Color(0, 25, 112), 9, true);
+//          Reset();
+//        }
         break;
       case 2:
         printText("Call me Spitfire", co, 50, true, true, 1);
