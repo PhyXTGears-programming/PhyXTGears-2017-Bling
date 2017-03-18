@@ -62,6 +62,18 @@ void sinWave (uint16_t color, int Delay, int n, float mult) {
     delay(Delay);
   }
   delay(Delay * 2);
+  int bri = BRIGHT;
+  for (int i = 0; i < 15; i++) {
+    if (bri > ceil(BRIGHT / 15.0)) {
+      bri -= ceil(BRIGHT / 15.0);
+    } else {
+      bri = 0;
+    }
+    brightOver(bri);
+    updateScreen();
+    delay(Delay);
+  }
+  Reset();
 }
 
 /*
@@ -91,19 +103,29 @@ void spot (unsigned long Stop, int wide, int Delay, bool first) {
   Stop += Start;
   //
   uint16_t color = matrix.Color(255, 255, 0);
+  // speed vars
+  int speedMaxRand = 1501;
+  int speedAdd = 350;
+  float speedD = 1000.0;
+  int speedMinDiff = 500;
   //
-  float sp = random(151);
-  sp += 50;
-  float Speed = sp / 100.0;
+  float sp = random(speedMaxRand);
+  sp += speedAdd;
+  float Speed = sp / speedD;
   Serial.println("Speed: " + String(Speed));
   float loc1 = random(matrix.width() - wide);
   loc1 += wide;
   float a1 = Speed;
   int width = wide;
   //
-  float sp2 = random(151);
-  sp2 += 50;
-  float Speed2 = sp2 / 100.0;
+  float sp2 = random(speedMaxRand);
+  if (abs(sp - sp2) < speedMinDiff) {
+    while (abs(sp - sp2) < speedMinDiff) {
+      sp2 = random(speedMaxRand);
+    }
+  }
+  sp2 += speedAdd;
+  float Speed2 = sp2 / speedD;
   Serial.println("Speed: " + String(Speed2));
   float loc2 = random(matrix.width() - wide);
   loc2 += wide;
@@ -237,4 +259,3 @@ void rectFromCenter (int centerX, int centerY, int radius, uint16_t color) {
   matrix.drawRect((centerX - radius), (centerY - radius), a, a, color);
   Serial.println("X: " + String(centerX) + " Y: " + String(centerY) + " R: " + String(radius));
 }
-
