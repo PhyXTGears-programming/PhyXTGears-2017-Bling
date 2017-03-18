@@ -23,7 +23,7 @@
 #define NUMBER              2   // number high
 
 #define PROGS               10  // programs that exist
-#define ToRUN               14  // # to run (if oneOfEach is false) (if true, must equal number of progams being run)
+#define ToRUN               11  // # to run (if oneOfEach is false) (if true, must equal number of progams being run)
 const bool oneOfEach =      true;
 
 #define OVER                true
@@ -56,11 +56,12 @@ int firstLogoW;
 // 5: strobe multi
 // 6: strobe white
 // 7: sine
-// 8: Logo
+// 8: Logo (screensaver)
 // 9: Spotlight
 
 //                          // one of each true (false)
-int progLimit[PROGS] = {2, 0, 1, 0, 1, 2, 2, 2, 2, 1};  // Limit for each program (or ratio)
+//                      0  1  2  3  4  5  6  7  8  9
+int progLimit[PROGS] = {1, 0, 1, 0, 1, 2, 2, 2, 1, 1};  // Limit for each program (or ratio)
 int progRuns[PROGS];        // Number of times each has been selected (nothing)
 int blingPrograms[ToRUN];   // order
 

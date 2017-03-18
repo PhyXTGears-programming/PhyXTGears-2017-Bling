@@ -260,5 +260,19 @@ void rectFromCenter (int centerX, int centerY, int radius, uint16_t color) {
   int a = radius * 2;
   a++;
   matrix.drawRect((centerX - radius), (centerY - radius), a, a, color);
-//  Serial.println("X: " + String(centerX) + " Y: " + String(centerY) + " R: " + String(radius));
+  //  Serial.println("X: " + String(centerX) + " Y: " + String(centerY) + " R: " + String(radius));
 }
+
+float getSpeedVal (float s, float mi, float ma) { // mi = 0.5;   ma = 2;      mi = 0.3;   ma = 3;
+  // half of values <1 other half >1
+  // put 1 in with <1
+  int miI = round(mi * 100.0);    // 50       30
+  int maI = round(ma * 100.0);    // 200      300
+  float s1 = random(maI - miI);   // 0-150    0-270
+  if (s <= miI) {
+    s += 50;                      // 50-100   30-80
+  } else if (s > miI) {
+    s *= 2;
+  }
+}
+
