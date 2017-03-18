@@ -73,7 +73,7 @@ int getPos(int pos, int dir, int Size) {
   else if (pos <= 0 && dir != 1) {
     dir = 1;
   }
-  Serial.println("Dir: " + String(dir));
+  //  Serial.println("Dir: " + String(dir));
   return dir;
 }
 
@@ -86,28 +86,36 @@ int getRandom() {
 }
 
 void screenSaver(unsigned long Stop, int tSize, int cSize, int sSize, int Speed) {
-  int sPosX = (ceil(matrix.width() / 4) * 3) - 2;
-  int sPosY = floor(matrix.height() / 2) - 4;
+  float sPosX = (ceil(matrix.width() / 4) * 3) - 2;
+  float sPosY = floor(matrix.height() / 2) - 4;
   int sDirX = getRandom();
   int sDirY = getRandom();
-  int tPosX = floor(matrix.width() / 4) - 3;
-  int tPosY = floor(matrix.height() / 2) - 0;
+  float tPosX = floor(matrix.width() / 4) - 3;
+  float tPosY = floor(matrix.height() / 2) - 0;
   int tDirX = getRandom();
   int tDirY = getRandom();
-  int cPosX = round(matrix.width() / 2) - 1;
-  int cPosY = floor(matrix.height() / 2) - 1;
+  float cPosX = round(matrix.width() / 2) - 1;
+  float cPosY = floor(matrix.height() / 2) - 1;
   int cDirX = getRandom();
   int cDirY = getRandom();
   unsigned long Start = millis(); //used for how run time of program
   unsigned long Keep = millis(); //used for physics
   unsigned long Stay = 0; //used for physics
-  bool Print = true;
   Stop += millis();
   matrix.drawCircle(cPosX, cPosY, ceil(cSize / 2), matrix.Color(255, 255, 255));
   matrix.drawRect(sPosX, sPosY, sSize, sSize, matrix.Color(0, 0, 255));
   drawTriangleCenter(tPosX, tPosY, tSize / 2, matrix.Color(255, 0, 0));
   updateScreen();
   delay(500);
+  float speeds[3] = {0, 0, 0}; // C, S, T
+  for (int i = 0; i < 3; i++) {
+    float s = random(16);
+    s += 5;
+    s = s / 10.0;
+    speeds[i] = s;
+    Serial.print("Speed " + String(i) + ": ");
+    Serial.println(speeds[i]);
+  }
   while (Start < Stop) {
     Keep = millis();
     Stay = 0;
@@ -117,20 +125,19 @@ void screenSaver(unsigned long Stop, int tSize, int cSize, int sSize, int Speed)
     sDirY = getPos(sPosY, sDirY, matrix.height());
     tDirX = getPos(tPosX, tDirX, matrix.width());
     tDirY = getPos(tPosY, tDirY, matrix.height());
-    cPosX += cDirX;
-    cPosY += cDirY;
-    sPosX += sDirX;
-    sPosY += sDirY;
-    tPosX += tDirX;
-    tPosY += tDirY;
+    cPosX += cDirX * speeds[0];
+    cPosY += cDirY * speeds[0];
+    sPosX += sDirX * speeds[1];
+    sPosY += sDirY * speeds[1];
+    tPosX += tDirX * speeds[2];
+    tPosY += tDirY * speeds[2];
     //    Serial.println(sPosX);
     //    Serial.println(sPosY);
-    Print = true;
     clearScreen();
-    matrix.drawCircle(cPosX, cPosY, ceil(cSize / 2), matrix.Color(255, 255, 255));
-    matrix.drawRect(sPosX, sPosY, sSize, sSize, matrix.Color(0, 0, 255));
+    matrix.drawCircle(round(cPosX), round(cPosY), ceil(cSize / 2), matrix.Color(255, 255, 255));
+    matrix.drawRect(round(sPosX), round(sPosY), sSize, sSize, matrix.Color(0, 0, 255));
     //matrix.drawTriangle(tPosX, tPosY,  tPosX, tPosY + tSize, tPosX + tSize, tPosY, matrix.Color(255, 0, 0));
-    drawTriangleCenter(tPosX, tPosY, tSize / 2, matrix.Color(255, 0, 0));
+    drawTriangleCenter(round(tPosX), round(tPosY), tSize / 2, matrix.Color(255, 0, 0));
     updateScreen();
     delay(Speed);
     Start = millis();
@@ -144,4 +151,3 @@ void drawTriangleCenter (int centerX, int centerY, int radius, uint16_t color) {
   int s = ceil(side);
   matrix.drawTriangle((centerX - s), yL, centerX, (centerY - radius), (centerX + s), yL, color);
 }
-

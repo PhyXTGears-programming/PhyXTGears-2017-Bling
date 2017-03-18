@@ -194,8 +194,8 @@ void spot (unsigned long Stop, int wide, int Delay, bool first) {
     matrix.clear();
     //
     loc1 += a1;
-    Serial.print("1: ");
-    Serial.println(loc1);
+    //    Serial.print("1: ");
+    //    Serial.println(loc1);
     if (loc1 > (matrix.width() * (past + 1))) {
       loc1 -= 2;
       a1 = Speed;
@@ -219,7 +219,7 @@ void spot (unsigned long Stop, int wide, int Delay, bool first) {
     }
     //
     loc2 += a2;
-    Serial.println(loc2);
+    //    Serial.println(loc2);
     if (loc2 > (matrix.width() * (past + 1))) {
       loc2 -= 2;
       a2 = Speed2;

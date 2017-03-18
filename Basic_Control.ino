@@ -58,7 +58,7 @@ void runBling (int order[]) {
         }
         break;
       case 2:
-        printText("I'm Spitfire", co, 50, true, true, 1);
+        printText("Call me Spitfire", co, 50, true, true, 1);
         Reset();
         break;
       case 3:
@@ -89,7 +89,9 @@ void runBling (int order[]) {
       case 8:
         screenSaver(4500, 7, 6, 7, 50);
         Reset();
+        matrix.setFont(&FreeSansBold12pt7b);
         printText("First", co2, 21);
+        matrix.setFont(&FreeSerif12pt7b);
         Reset();
         break;
       case 9:

@@ -4,7 +4,7 @@
 #include <Adafruit_GFX.h>
 #include <gfxfont.h>
 #include <Fonts/FreeMono12pt7b.h>
-#include <Fonts/FreeSans9pt7b.h>
+#include <Fonts/FreeSansBold12pt7b.h>
 #include <Fonts/FreeSerif12pt7b.h>
 #include <EEPROM.h>
 
