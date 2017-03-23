@@ -39,6 +39,13 @@ Adafruit_NeoPixel gearString = Adafruit_NeoPixel(gearStringNum, gearStringPin, N
 
 int ledNumber;
 
+/*
+   1720 phyxtgears
+   sound bars
+   reversing sine wave / moving sine wave
+   fire
+*/
+
 // bitmaps
 
 unsigned char firstLogo[40 * 16 * 3];
@@ -159,4 +166,8 @@ void loop() {
   Reset();
   blingSelect();
   delay(100);
+
+  //  sinWaveM(matrix.Color(255, 255, 255), 0, 2500, 25, 2);
+  //  Reset();
+  //  delay(2000);
 }
