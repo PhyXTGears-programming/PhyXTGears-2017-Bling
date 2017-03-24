@@ -74,7 +74,9 @@ void runBling (int order[]) {
         credits (subteams, c1, loopSize, 0, 13, true);
         Reset();
       case 12:
-        printText("Thank you 447 for lunch!", co2, 80, true, true, 2);
+        brightOver(BRIGHT - 20);
+        audioBar(2000, 4);
+        Reset();
         break;
     }
     Serial.print("d");

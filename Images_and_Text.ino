@@ -138,10 +138,3 @@ void credits (String messages[], uint16_t colors[], int LoopSize, int Delay, int
   }
   delay(Delay);
 }
-
-const int randThreshold = 50;
-
-uint16_t randCol () {
-  return matrix.Color(random(randThreshold, 256), random(randThreshold, 256), random(randThreshold, 256));
-}
-
