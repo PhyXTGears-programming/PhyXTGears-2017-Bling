@@ -8,6 +8,8 @@ void runBling (int order[]) {
   int co2[] = {150, 150, 150};
   String me10[3] = {"1720", "PhyXT", "Gears"};
   uint16_t co10[3] = {GREEN, GREEN, GREEN};
+  uint16_t c1[] = {matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255)};
+  int loopSize = sizeof(subteams) / sizeof(subteams[0]);
   for (int i = 0; i < n; i++) {
     Serial.println("Running #" + String(i + 1) + ": " + String(blingPrograms[i]));
     switch (blingPrograms[i]) {
@@ -38,12 +40,12 @@ void runBling (int order[]) {
         break;
       case 5:
         brightOver(255);
-        strobePixel(2500, 0, matrix.Color(0, 0, 0), 5, true);
+        strobePixel(1500, 0, matrix.Color(0, 0, 0), 5, true);
         Reset();
         break;
       case 6:
         brightOver(255);
-        strobePixel(1500, 0, matrix.Color(255, 255, 255), 1, false);
+        strobePixel(1000, 0, matrix.Color(255, 255, 255), 1, false);
         Reset();
         break;
       case 7:
@@ -68,13 +70,11 @@ void runBling (int order[]) {
         Reset();
         break;
       case 11:
-        int loopSize = sizeof(subteams) / sizeof(subteams[0]);
         Serial.println("Loop size: " + String(loopSize));
-        uint16_t c1[] = {matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255)};
         credits (subteams, c1, loopSize, 0, 13, true);
         Reset();
       case 12:
-        void printText("Thank you 447 for lunch!", co2);
+        printText("Thank you 447 for lunch!", co2, 34, true, true, 1);
         break;
     }
     Serial.print("d");

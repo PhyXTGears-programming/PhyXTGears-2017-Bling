@@ -22,7 +22,7 @@
 #define HEIGHT              8   // each
 #define NUMBER              2   // number high
 
-#define PROGS               12  // programs that exist
+#define PROGS               13  // programs that exist
 #define ToRUN               11   // # to run (if oneOfEach is false) (if true, must equal number of progams being run)
 const bool oneOfEach =      true;
 
