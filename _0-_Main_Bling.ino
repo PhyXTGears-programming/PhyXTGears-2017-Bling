@@ -22,16 +22,26 @@
 #define HEIGHT              8   // each
 #define NUMBER              2   // number high
 
-#define PROGS               10  // programs that exist
-#define ToRUN               9   // # to run (if oneOfEach is false) (if true, must equal number of progams being run)
+#define PROGS               12  // programs that exist
+#define ToRUN               11   // # to run (if oneOfEach is false) (if true, must equal number of progams being run)
 const bool oneOfEach =      true;
 
 #define OVER                true
-#define BRIGHT              64
+#define BRIGHT              55
 
 #define FONT                FreeSerif12pt7b
 #define FIRST_FONT          FreeSansBoldOblique9pt7b
-//#define VERTICAL_FONT       
+
+#define RED                 matrix.Color(255, 0, 0)
+#define GREEN               matrix.Color(0, 255, 0)
+#define BLUE                matrix.Color(0, 0, 255)
+#define YELLOW              matrix.Color(255, 255, 0)
+#define AQUA                matrix.Color(0, 255, 255)
+#define VIOLET              matrix.Color(255, 0, 255)
+#define WHITE               matrix.Color(255, 255, 255)
+#define BLACK               matrix.Color(0, 0, 0)
+
+//#define VERTICAL_FONT
 
 //Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(WIDTH, HEIGHT, 1, NUMBER, MATRIX, NEO_TILE_TOP + NEO_TILE_LEFT + NEO_TILE_COLUMNS + NEO_TILE_ZIGZAG + NEO_MATRIX_COLUMNS + NEO_MATRIX_TOP + NEO_MATRIX_BOTTOM + NEO_MATRIX_ZIGZAG  + NEO_GRB + NEO_KHZ800);
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(WIDTH, HEIGHT, 1, NUMBER, MATRIX, NEO_TILE_BOTTOM + NEO_TILE_RIGHT + NEO_TILE_COLUMNS + NEO_TILE_ZIGZAG + NEO_MATRIX_COLUMNS + NEO_MATRIX_TOP + NEO_MATRIX_BOTTOM + NEO_MATRIX_ZIGZAG  + NEO_GRB + NEO_KHZ800);
@@ -40,7 +50,9 @@ Adafruit_NeoPixel gearString = Adafruit_NeoPixel(gearStringNum, gearStringPin, N
 
 int ledNumber;
 
-const String subteams = {};
+const String subteams[23] = {"Honors", "to our", "sub-", " teams", "Chair-", " mans", "Media", "CAD/CAM", "Anim-", " ation",
+                           "Wood-", " work-", "  ing", "Docu-", " ment-", " ation", "Fund-", " rais-", "  ing", "Out-", " reach", "PR", " Team"
+                          };
 
 /*
    1720 phyxtgears
@@ -57,21 +69,24 @@ int firstLogoW;
 
 // ---Selection---
 // 0 and 2
-
-// 0: Dots
-// 1: Rectangle zoom (disabled)
-// 2: name
-// 3: fill for 0.25 sec (disabled)
-// 4: zig-zag
-// 5: strobe multi
-// 6: strobe white
-// 7: sine
-// 8: Logo (screensaver)
-// 9: Spotlight
+/*
+  0: Dots
+  1: Rectangle zoom (disabled)
+  2: name
+  3: fill for 0.25 sec (disabled)
+  4 : zig - zag
+  5 : strobe multi
+  6 : strobe white
+  7 : sine
+  8 : Logo (screensaver)
+  9 : Spotlight
+  10: 1720
+  11: Honors
+*/
 
 //                          // one of each true (false)
-//                      0  1  2  3  4  5  6  7  8  9
-int progLimit[PROGS] = {1, 0, 1, 0, 1, 1, 1, 2, 1, 1};  // Limit for each program (or ratio)
+//                      0  1  2  3  4  5  6  7  8  9 10 11
+int progLimit[PROGS] = {1, 0, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1};  // Limit for each program (or ratio)
 int progRuns[PROGS];        // Number of times each has been selected (nothing)
 int blingPrograms[ToRUN];   // order
 
@@ -99,6 +114,7 @@ void generateRGB(); //Randomizes values inside randomRGB.
 void sinWave (uint16_t color, int Delay, int n = 1, float mult = float(10));
 void screenSaver(unsigned long Stop, int tSize, int cSize, int sSize, int Speed = 35);
 void creditsPrint(String message, uint16_t color, int Delay, bool twoText = false, String message2 = "", uint16_t color2 = matrix.Color(255, 255, 255), bool threeText = false, String message3 = "", uint16_t color3 = matrix.Color(255, 255, 255), bool allCaps = true, int endDelay = 0);
+void credits (String Messages[], uint16_t colors[], int LoopSize, int Delay = 0, int scrollDelay = 25, bool randColor = false);
 
 // ==============================================
 
@@ -166,19 +182,26 @@ void loop() {
   //  Reset();
   //  delay(1000);
 
-//  runBling(blingPrograms);
-//  Reset();
-//  blingSelect();
-//  delay(100);
+  bling();
 
   //  sinWaveM(matrix.Color(255, 255, 255), 0, 2500, 25, 2);
   //  Reset();
   //  delay(2000);
 
-//  creditsPrint ("PhyXT", matrix.Color(255, 0, 0), 100, true, "Gears", matrix.Color(0, 255, 0), true, "GO", matrix.Color(0, 0, 255));
-  String m1[] = {"AaAa", "BbBb", "CcCc", "DdDd"};
-  uint16_t c1[] = {matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 255, 255)};
-  credits (m1, c1, 50);
+  //  creditsPrint ("PhyXT", matrix.Color(255, 0, 0), 100, true, "Gears", matrix.Color(0, 255, 0), true, "GO", matrix.Color(0, 0, 255));
+  //  String m1[] = {"1", "22", "333", "4444", "55555", "666666", "7777777", "88888888", "999999999"};
+  /*
+    int loopSize = sizeof(subteams) / sizeof(subteams[0]);
+    Serial.println("Loop size: " + String(loopSize));
+    uint16_t c1[] = {matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255),matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255)};
+    credits (subteams, c1, 0, 20, loopSize, true);
+    Reset();
+    delay(2500);*/
+}
+
+void bling () {
+  runBling(blingPrograms);
   Reset();
-  delay(2500);
+  blingSelect();
+  delay(100);
 }

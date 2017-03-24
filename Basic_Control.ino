@@ -15,7 +15,7 @@ void brightnessControl() {
 }
 
 void clearScreen() {
-  matrix.fillScreen(matrix.Color(0, 0, 0));
+  matrix.fillScreen(BLACK);
 }
 
 void updateScreen() {
@@ -40,6 +40,7 @@ void Reset () {
   clearScreen();
   updateScreen();
   progBright = false;
+//  matrix.setFont(&FONT);
 }
 
 void setupPins () {

@@ -73,30 +73,73 @@ void creditsPrint (String message, uint16_t color, int Delay, bool twoText, Stri
     matrix.clear();
     delay(Delay);
   }
-  delay(Delay);
-  delay(endDelay);
+  //  delay(endDelay);
+  matrix.setFont(&FONT);
 }
 
 
-void credits (String messages[], uint16_t colors[], int Delay) {
+void credits (String messages[], uint16_t colors[], int LoopSize, int Delay, int scrollDelay, bool randColor) {
+//  String messages[LoopSize] = Messages;
+//  for (int i < LoopSize) {
+//    if () {
+//      //
+//    }
+//  }
+  //  uint16_t colors[LoopSize];
+  //  if (randCol) {
+  //    for (int i = 0; i < LoopSize; i++) {
+  //      colors[i] = matrix.Color(random(256), random(256), random(256));
+  //    }
+  //  } else {
+  //    colors = Colors;
+  //  }
   float Size = sizeof(messages);
-  float SizeString = sizeof(String);
-  Serial.println(Size);
-  Serial.println(SizeString);
-  int L = Size / SizeString;
-  Serial.println(L);
-  creditsPrint ("", matrix.Color(0, 0, 0), 500, true, "", matrix.Color(0, 0, 0), true, messages[0], colors[0]);
-  delay(Delay);
+  float SizeString = sizeof(messages[0]);
+  Serial.println("Size: " + String(Size));
+  //  int L = Size / SizeString;
+  int L = LoopSize;
+  Serial.println("L: " + String(L));
+  if (randColor) {
+    creditsPrint ("", BLACK, scrollDelay, true, "", BLACK, true, messages[0], randCol());
+  } else {
+    creditsPrint ("", BLACK, scrollDelay, true, "", BLACK, true, messages[0], colors[0]);
+  }
+  //  delay(Delay);
   Serial.println("A");
-  creditsPrint ("", matrix.Color(0, 0, 0), 500, true, messages[0], colors[0], true, messages[1], colors[1]);
+  if (randColor) {
+    creditsPrint ("", BLACK, scrollDelay, true, messages[0], randCol(), true, messages[1], randCol());
+  } else {
+    creditsPrint ("", BLACK, scrollDelay, true, messages[0], colors[0], true, messages[1], colors[1]);
+  }
   delay(Delay);
   //
-  Serial.println("POINT");
+  for (int i = 0; i < (L - 2); i++) {
+    if (randColor) {
+      creditsPrint (messages[i], randCol(), scrollDelay, true, messages[i + 1], randCol(), true, messages[i + 2], randCol());
+    } else {
+      creditsPrint (messages[i], colors[i], scrollDelay, true, messages[i + 1], colors[i + 1], true, messages[i + 2], colors[i + 2]);
+    }
+    Serial.println("I: " + String(i));
+  }
   //
-  creditsPrint ("", matrix.Color(0, 0, 0), 500, true, "", matrix.Color(0, 0, 0), true, messages[0], colors[0]);
+  if (randColor) {
+    creditsPrint (messages[L - 2], randCol(), scrollDelay, true, messages[L - 1], randCol(), true, "", BLACK);
+  } else {
+    creditsPrint (messages[L - 2], colors[L - 2], scrollDelay, true, messages[L - 1], colors[L - 1], true, "", BLACK);
+  }
   delay(Delay);
   Serial.println("B");
-  creditsPrint (messages[L - 2], colors[L - 2], 500, true, messages[L - 1], colors[L - 1], true, "", matrix.Color(0, 0, 0));
+  if (randColor) {
+    creditsPrint (messages[L - 1], randCol(), scrollDelay, true, "", BLACK, true, "", BLACK);
+  } else {
+    creditsPrint (messages[L - 1], colors[L - 1], scrollDelay, true, "", BLACK, true, "", BLACK);
+  }
   delay(Delay);
+}
+
+const int randThreshold = 50;
+
+uint16_t randCol () {
+  return matrix.Color(random(randThreshold, 256), random(randThreshold, 256), random(randThreshold, 256));
 }
 

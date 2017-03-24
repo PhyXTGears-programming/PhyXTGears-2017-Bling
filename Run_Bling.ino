@@ -6,6 +6,8 @@ void runBling (int order[]) {
   Serial.println(sizeof(int));
   int co[] = {0, 150, 0};
   int co2[] = {150, 150, 150};
+  String me10[3] = {"1720", "PhyXT", "Gears"};
+  uint16_t co10[3] = {GREEN, GREEN, GREEN};
   for (int i = 0; i < n; i++) {
     Serial.println("Running #" + String(i + 1) + ": " + String(blingPrograms[i]));
     switch (blingPrograms[i]) {
@@ -15,13 +17,13 @@ void runBling (int order[]) {
         Reset();
         break;
       case 1:
-//        for (int j = 0; j < 9; j++) {
-//          rectangleZoom(0, 0, 40, 16, matrix.Color(0, 25, 112), 9, true);
-//          Reset();
-//        }
+        //        for (int j = 0; j < 9; j++) {
+        //          rectangleZoom(0, 0, 40, 16, matrix.Color(0, 25, 112), 9, true);
+        //          Reset();
+        //        }
         break;
       case 2:
-        printText("Call me Spitfire", co, 50, true, true, 1);
+        printText("I'm Spitfire", co, 50, true, true, 1);
         Reset();
         break;
       case 3:
@@ -62,13 +64,21 @@ void runBling (int order[]) {
         Reset();
         break;
       case 10:
+        credits(me10, co10, 3);
+        Reset();
         break;
+      case 11:
+        int loopSize = sizeof(subteams) / sizeof(subteams[0]);
+        Serial.println("Loop size: " + String(loopSize));
+        uint16_t c1[] = {matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255)};
+        credits (subteams, c1, loopSize, 0, 13, true);
+        Reset();
     }
     Serial.print("d");
     Reset();
     Serial.println("one");
-//    if (Serial.available() > 0) {
-//      setTeam();
-//    }
+    //    if (Serial.available() > 0) {
+    //      setTeam();
+    //    }
   }
 }
