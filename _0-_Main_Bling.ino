@@ -40,6 +40,8 @@ Adafruit_NeoPixel gearString = Adafruit_NeoPixel(gearStringNum, gearStringPin, N
 
 int ledNumber;
 
+const String subteams = {};
+
 /*
    1720 phyxtgears
    sound bars

@@ -81,7 +81,10 @@ void creditsPrint (String message, uint16_t color, int Delay, bool twoText, Stri
 void credits (String messages[], uint16_t colors[], int Delay) {
   float Size = sizeof(messages);
   float SizeString = sizeof(String);
+  Serial.println(Size);
+  Serial.println(SizeString);
   int L = Size / SizeString;
+  Serial.println(L);
   creditsPrint ("", matrix.Color(0, 0, 0), 500, true, "", matrix.Color(0, 0, 0), true, messages[0], colors[0]);
   delay(Delay);
   Serial.println("A");
