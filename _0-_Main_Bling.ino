@@ -81,11 +81,12 @@ int firstLogoW;
   9 : Spotlight
   10: 1720
   11: Honors
+  12: Thank you 447 for lunch
 */
 
 //                          // one of each true (false)
-//                      0  1  2  3  4  5  6  7  8  9 10 11
-int progLimit[PROGS] = {1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1};  // Limit for each program (or ratio)
+//                      0  1  2  3  4  5  6  7  8  9 10 11 12
+int progLimit[PROGS] = {1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1};  // Limit for each program (or ratio)
 int progRuns[PROGS];        // Number of times each has been selected (nothing)
 int blingPrograms[ToRUN];   // order
 

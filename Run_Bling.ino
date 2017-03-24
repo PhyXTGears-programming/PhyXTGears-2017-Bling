@@ -73,6 +73,9 @@ void runBling (int order[]) {
         uint16_t c1[] = {matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255)};
         credits (subteams, c1, loopSize, 0, 13, true);
         Reset();
+      case 12:
+        void printText("Thank you 447 for lunch!", co2);
+        break;
     }
     Serial.print("d");
     Reset();
