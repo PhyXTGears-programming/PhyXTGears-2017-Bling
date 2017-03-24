@@ -50,8 +50,8 @@ Adafruit_NeoPixel gearString = Adafruit_NeoPixel(gearStringNum, gearStringPin, N
 
 int ledNumber;
 
-const String subteams[23] = {"Honors", "to our", "sub-", " teams", "Chair-", " mans", "Media", "CAD/CAM", "Anim-", " ation",
-                           "Wood-", " work-", "  ing", "Docu-", " ment-", " ation", "Fund-", " rais-", "  ing", "Out-", " reach", "PR", " Team"
+const String subteams[23] = {"Shout-", " out", "to our", "sub-", " teams", "Media", "Chair-", " mans", "CAD/CAM", "Anim-", " ation",
+                           "Wood-", " work-", "  ing", "Fund-", " rais-", "  ing", "Out-", " reach", "Scout-", " ing", "Spirit"
                           };
 
 /*
