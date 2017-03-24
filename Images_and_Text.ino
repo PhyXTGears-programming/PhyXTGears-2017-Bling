@@ -1,4 +1,6 @@
-void printText (String phrase, int color[], int run_time, bool scroll, bool upperCase, int Skip, int pixOffset) {
+void printText (String Phrase, int color[], int run_time, bool scroll, bool upperCase, int Skip, int pixOffset) {
+  String phrase = Phrase;
+  phrase.replace(" ", "  ");
   int h = matrix.height() - 1;
   h -= pixOffset;
   char p[phrase.length()];
