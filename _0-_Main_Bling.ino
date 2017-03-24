@@ -55,7 +55,6 @@ const String subteams[23] = {"Honors", "to our", "sub-", " teams", "Chair-", " m
                           };
 
 /*
-   1720 phyxtgears
    sound bars
    reversing sine wave / moving sine wave
    fire
@@ -86,7 +85,7 @@ int firstLogoW;
 
 //                          // one of each true (false)
 //                      0  1  2  3  4  5  6  7  8  9 10 11
-int progLimit[PROGS] = {1, 0, 1, 0, 1, 1, 1, 2, 1, 1, 1, 1};  // Limit for each program (or ratio)
+int progLimit[PROGS] = {1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1};  // Limit for each program (or ratio)
 int progRuns[PROGS];        // Number of times each has been selected (nothing)
 int blingPrograms[ToRUN];   // order
 
