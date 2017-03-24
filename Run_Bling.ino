@@ -61,9 +61,14 @@ void runBling (int order[]) {
         spot(7000, 5, 10, true);
         Reset();
         break;
+      case 10:
+        break;
     }
     Serial.print("d");
     Reset();
     Serial.println("one");
+//    if (Serial.available() > 0) {
+//      setTeam();
+//    }
   }
 }

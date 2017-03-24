@@ -23,7 +23,7 @@
 #define NUMBER              2   // number high
 
 #define PROGS               10  // programs that exist
-#define ToRUN               11  // # to run (if oneOfEach is false) (if true, must equal number of progams being run)
+#define ToRUN               9   // # to run (if oneOfEach is false) (if true, must equal number of progams being run)
 const bool oneOfEach =      true;
 
 #define OVER                true
@@ -31,6 +31,7 @@ const bool oneOfEach =      true;
 
 #define FONT                FreeSerif12pt7b
 #define FIRST_FONT          FreeSansBoldOblique9pt7b
+//#define VERTICAL_FONT       
 
 //Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(WIDTH, HEIGHT, 1, NUMBER, MATRIX, NEO_TILE_TOP + NEO_TILE_LEFT + NEO_TILE_COLUMNS + NEO_TILE_ZIGZAG + NEO_MATRIX_COLUMNS + NEO_MATRIX_TOP + NEO_MATRIX_BOTTOM + NEO_MATRIX_ZIGZAG  + NEO_GRB + NEO_KHZ800);
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(WIDTH, HEIGHT, 1, NUMBER, MATRIX, NEO_TILE_BOTTOM + NEO_TILE_RIGHT + NEO_TILE_COLUMNS + NEO_TILE_ZIGZAG + NEO_MATRIX_COLUMNS + NEO_MATRIX_TOP + NEO_MATRIX_BOTTOM + NEO_MATRIX_ZIGZAG  + NEO_GRB + NEO_KHZ800);
@@ -68,7 +69,7 @@ int firstLogoW;
 
 //                          // one of each true (false)
 //                      0  1  2  3  4  5  6  7  8  9
-int progLimit[PROGS] = {1, 0, 1, 0, 1, 2, 2, 2, 1, 1};  // Limit for each program (or ratio)
+int progLimit[PROGS] = {1, 0, 1, 0, 1, 1, 1, 2, 1, 1};  // Limit for each program (or ratio)
 int progRuns[PROGS];        // Number of times each has been selected (nothing)
 int blingPrograms[ToRUN];   // order
 
@@ -95,6 +96,7 @@ void drawShape(int shape, int values[], int color[]); //Rectangle: 0, Circle: 1,
 void generateRGB(); //Randomizes values inside randomRGB.
 void sinWave (uint16_t color, int Delay, int n = 1, float mult = float(10));
 void screenSaver(unsigned long Stop, int tSize, int cSize, int sSize, int Speed = 35);
+void creditsPrint(String message, uint16_t color, int Delay, bool twoText = false, String message2 = "", uint16_t color2 = matrix.Color(255, 255, 255), bool threeText = false, String message3 = "", uint16_t color3 = matrix.Color(255, 255, 255), bool allCaps = true, int endDelay = 0);
 
 // ==============================================
 
@@ -162,12 +164,19 @@ void loop() {
   //  Reset();
   //  delay(1000);
 
-  runBling(blingPrograms);
-  Reset();
-  blingSelect();
-  delay(100);
+//  runBling(blingPrograms);
+//  Reset();
+//  blingSelect();
+//  delay(100);
 
   //  sinWaveM(matrix.Color(255, 255, 255), 0, 2500, 25, 2);
   //  Reset();
   //  delay(2000);
+
+//  creditsPrint ("PhyXT", matrix.Color(255, 0, 0), 100, true, "Gears", matrix.Color(0, 255, 0), true, "GO", matrix.Color(0, 0, 255));
+  String m1[] = {"AaAa", "BbBb", "CcCc", "DdDd"};
+  uint16_t c1[] = {matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 255, 255)};
+  credits (m1, c1, 50);
+  Reset();
+  delay(2500);
 }
