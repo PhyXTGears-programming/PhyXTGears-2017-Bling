@@ -82,7 +82,7 @@ bool serialInterp () {
     } else {
       return false;
     }
-  } else if (in == "TEAM" || in == "TEAM\n") {
+  } /* else if (in == "TEAM" || in == "TEAM\n") {
     Serial.print("Team Slot Number: ");
     int teamS = Serial.parseInt();
     Serial.println(teamS);
@@ -92,6 +92,10 @@ bool serialInterp () {
     } else {
       return false;
     }
+  } */
+  else {
+    Serial.println("invalid");
+    return false;
   }
 }
 

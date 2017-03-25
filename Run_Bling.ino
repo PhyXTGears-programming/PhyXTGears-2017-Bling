@@ -10,6 +10,8 @@ void runBling (int order[]) {
   uint16_t co10[3] = {GREEN, GREEN, GREEN};
   uint16_t c1[] = {matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255)};
   int loopSize = sizeof(subteams) / sizeof(subteams[0]);
+  String tN[] = {"71", "1529", "1720"};
+  uint16_t tC[] = {matrix.Color(0, 0, 128), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0)};
   for (int i = 0; i < n; i++) {
     Serial.println("Running #" + String(i + 1) + ": " + String(blingPrograms[i]));
     switch (blingPrograms[i]) {
@@ -76,6 +78,10 @@ void runBling (int order[]) {
       case 12:
         brightOver(BRIGHT - 20);
         audioBar(2500, 5);
+        Reset();
+        break;
+      case 13:
+        credits (tN, tC, 2);
         Reset();
         break;
     }
