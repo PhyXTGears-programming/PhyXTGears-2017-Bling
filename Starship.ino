@@ -1,5 +1,19 @@
-void explodingCircle (int x, int y, int r, uint16_t color) {
-  //  matrix.fillCircle(x, y, r);
+
+void explodingCircle (int x, int y, int r, uint16_t color, bool fill=true) {
+  matrix.drawCircle(x, y, r, color);
+  if (fill){
+    matrix.fillCircle(x, y, r, color);
+  }
+  updateScreen();
+  delay(200);
+  for(int i = 0; i < 0.5 * r; i++){
+    matrix.clear();
+    for(int i = 0; i < 0.5 * r; i++){
+      matrix.drawPixel(random(x + i, x + i + 2), random(y + i, y + 1 + 2), color);
+    }
+    updateScreen();
+    delay(30);
+  }
 }
 
 void drawShipTL (int x, int y, float s, uint16_t color) {

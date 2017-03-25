@@ -124,6 +124,9 @@ void sinWave (uint16_t color, int Delay, int n = 1, float mult = float(10));
 void screenSaver(unsigned long Stop, int tSize, int cSize, int sSize, int Speed = 35);
 void creditsPrint(String message, uint16_t color, int Delay, bool twoText = false, String message2 = "", uint16_t color2 = matrix.Color(255, 255, 255), bool threeText = false, String message3 = "", uint16_t color3 = matrix.Color(255, 255, 255), bool allCaps = true, int endDelay = 0);
 void credits (String Messages[], uint16_t colors[], int LoopSize, int Delay = 0, int scrollDelay = 25, bool randColor = false);
+void explodingCircle(int x, int y, uint16_t color=WHITE, bool fill=true);
+void drawShipTL (int x, int y, float s, uint16_t color);
+void drawShip(int x, int y, float s, uint16_t color=WHITE);
 
 // ==============================================
 
@@ -184,10 +187,18 @@ void test () {
   //  drawShip(20, 7, 2, WHITE);
 
   for (float i = 0; i <= 2; i += 0.1) {
-    drawShip(20, 7, i, WHITE);
+    drawShip(20, 7, i);
+    matrix.clear();
+  }
+  for (int i = 0; i < 21; i += 1) {
+    drawShip(20 + i, 7 + floor(i / 2), 2.0);
     matrix.clear();
   }
   delay(2500);
   Reset();
   delay(500);
+
+  //explodingCircle(20, 8, WHITE);
+  //Reset();
+  //delay(2500);
 }
