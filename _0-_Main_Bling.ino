@@ -202,8 +202,11 @@ void loop() {
   //  Reset();
   //  delay(2500);
 
-  for (float i = 0; i <= 3; i += 0.1) {
-    drawShip(20, 8, i, WHITE);
+
+//  drawShip(20, 7, 2, WHITE);
+
+  for (float i = 0; i <= 2; i += 0.1) {
+    drawShip(20, 7, i, WHITE);
     matrix.clear();
   }
   delay(2500);

@@ -10,8 +10,9 @@ void drawShipTL (int x, int y, float s, uint16_t color) {
   matrix.drawLine(x, round(y + (4 * s)), round(x + s), round(y + (4 * s)), color);
 
   // Middle
-  int rX = x + (10 * s);
-  int rY = round(round(y + (4 * s)) / 2.0);
+  int rX = x + (9 * s);
+  int rY = round(y + round((4 * s) / 2.0));
+//  int mY = round(y / 2.0);
   matrix.drawLine(x, rY, rX, rY, color);
   matrix.fillCircle((round((rX - x) / 2.0) + x), rY, (s * 2), color);
 
@@ -27,8 +28,8 @@ void drawShipTL (int x, int y, float s, uint16_t color) {
 void drawShip (int x, int y, float s, uint16_t color) {
   int X = x;
   int Y = y;
-  X += 5 * s;
-  Y += round(round(y + (4 * s)) / 2.0);
+  X -= round(4.5 * s);
+  Y -= round((round(y + (4 * s)) - y) / 2.0);
   drawShipTL (X, Y, s, color);
 }
 
