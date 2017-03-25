@@ -40,7 +40,7 @@ void Reset () {
   clearScreen();
   updateScreen();
   progBright = false;
-//  matrix.setFont(&FONT);
+  //  matrix.setFont(&FONT);
 }
 
 void setupPins () {
@@ -52,3 +52,75 @@ void brightOver (int b) {
   progBright = true;
   bright = b;
 }
+
+bool serialInterp () {
+  //  if (noSerial) {
+  //    Serial.println("Serial is disabled");
+  //    return false;
+  //  }
+  while (Serial.available() > 0) {
+    Serial.readString();
+  }
+  Serial.println("What would you like to do?");
+  Serial.println("\ttest");
+  Serial.println("\tbling");
+  Serial.println("\tteam");
+  String in = serialIn();
+  Serial.println(in);
+  in.toUpperCase();
+  if (in == "TEST" || in == "TEST\n") {
+    if (serialBool("Would you like to enter test mode? ")) {
+      testing = true;
+      return true;
+    } else {
+      return false;
+    }
+  } else if (in == "BLING" || in == "BLING\n") {
+    if (serialBool("Would you like to enable bling? ")) {
+      testing = false;
+      return true;
+    } else {
+      return false;
+    }
+  } else if (in == "TEAM" || in == "TEAM\n") {
+    Serial.print("Team Slot Number: ");
+    int teamS = Serial.parseInt();
+    Serial.println(teamS);
+    if (serialBool("Would you like to enable bling? ")) {
+      testing = false;
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
+/*
+    else if (in == "DISABLE" || in == "DISABLE\n") {
+    if (serialBool("Would you like to disable Serial? ")) {
+      noSerial = true;
+      return true;
+    } else {
+      return false;
+    }
+*/
+
+bool serialBool (String message) {
+  Serial.print(message);
+  String in = serialIn();
+  Serial.println(in);
+  in.toUpperCase();
+  if (in == "Y" || in == "YES") {
+    Serial.println("Yes");
+    return true;
+  } else {
+    Serial.println("No");
+    return false;
+  }
+}
+
+String serialIn () {
+  while (Serial.available() < 1) {}
+  return Serial.readString();
+}
+

@@ -8,6 +8,8 @@
 #include <Fonts/FreeSerif12pt7b.h>
 #include <EEPROM.h>
 
+//  ---------------------------------------  begin define  ---------------------------------------  //
+
 #define MATRIX              6
 #define pixyRingPin         8
 #define gearStringPin       7
@@ -41,7 +43,13 @@ const bool oneOfEach =      true;
 #define WHITE               matrix.Color(255, 255, 255)
 #define BLACK               matrix.Color(0, 0, 0)
 
+#define TESTING             false
+
 //#define VERTICAL_FONT
+
+//  ----------------------------------------  end define  ----------------------------------------  //
+
+bool testing = false;
 
 //Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(WIDTH, HEIGHT, 1, NUMBER, MATRIX, NEO_TILE_TOP + NEO_TILE_LEFT + NEO_TILE_COLUMNS + NEO_TILE_ZIGZAG + NEO_MATRIX_COLUMNS + NEO_MATRIX_TOP + NEO_MATRIX_BOTTOM + NEO_MATRIX_ZIGZAG  + NEO_GRB + NEO_KHZ800);
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(WIDTH, HEIGHT, 1, NUMBER, MATRIX, NEO_TILE_BOTTOM + NEO_TILE_RIGHT + NEO_TILE_COLUMNS + NEO_TILE_ZIGZAG + NEO_MATRIX_COLUMNS + NEO_MATRIX_TOP + NEO_MATRIX_BOTTOM + NEO_MATRIX_ZIGZAG  + NEO_GRB + NEO_KHZ800);
@@ -49,6 +57,7 @@ Adafruit_NeoPixel pixyRing   = Adafruit_NeoPixel(pixyRingNum, pixyRingPin,   NEO
 Adafruit_NeoPixel gearString = Adafruit_NeoPixel(gearStringNum, gearStringPin, NEO_GRB + NEO_KHZ800);
 
 int ledNumber;
+//bool noSerial = true;
 
 const String subteams[23] = {"Shout-", " out", "to our", "sub-", " teams", "Media", "Chair-", " mans", "CAD", "Anim-", " ation",
                              "Wood-", " work-", "  ing", "Fund-", " rais-", "  ing", "Out-", " reach", "Scout-", " ing", "Spirit"
@@ -118,13 +127,15 @@ void credits (String Messages[], uint16_t colors[], int LoopSize, int Delay = 0,
 
 // ==============================================
 
+// put your setup code here, to run once:
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(250000);
+  Serial.setTimeout(5);
   Serial.println('\n');
   ledNumber = WIDTH * HEIGHT * NUMBER;
   setupPins();
-  //  loadBitmap();
+  // load bitmap doesn't work
+  // loadBitmap();
   matrix.begin();
   matrix.show();
   gearString.begin();
@@ -136,87 +147,47 @@ void setup() {
   Serial.println("Microseconds: " + String(micros()));
   brightnessControl();
   randSeed();
-  blingSelect();
-
-  //  printBitmap(firstLogo);
+  //  if (testing) {
+  //    noSerial = false;
+  //  }
 }
 
+// put your main code here, to run repeatedly:
 void loop() {
-  // put your main code here, to run repeatedly:
-  //    int co[] = {0, 0, 255};
-  //    printText("hi", co, 10, false);
-  //    theaterChase(3, 0, matrix.Color(0, 255, 0), true);
-  //  strobePixel(1000, 0, matrix.Color(255, 255, 255));
-  //  rectangleZoom(0,0,32,16, matrix.Color(255, 0, 0), 0);
-  //  matrix.fillScreen(matrix.Color(200, 200, 200));
-  //  matrix.show();
-  //  matrix.clear();
-  //  matrix.show();
-  //  rDraw(800, matrix.Color(0, 255, 255), 9, 0, true);
-  //  matrix.clear();
-  //  updateScreen();
-  //  delay(300);
+  // if running bling
+  if (!testing) {
+    Serial.println("Starting Bling...");
+    bling();
+  } else {  // if testing
+    Serial.println("Starting Test...");
+    test();
+  }
+  if (Serial.available() > 0) {
+    serialInterp();
+  }
+}
 
-  //  if (digitalRead(gearSensePin) == LOW) {
-  //    Serial.println("on***");
-  //    pixelAlert();
-  //    Serial.println("off***");
-  //  }
-  //  delay(99);
-  //  printToString(gearString, 200, 0, 200);
-  //  zigZag(5000, matrix.Color(255, 0, 0));
+// for running bling
+void bling () {
+  blingSelect();
+  runBling(blingPrograms);
+  Reset();
+  delay(100);
+}
 
-
-  //  runBling(blingPrograms);
-  //  Reset();
-  //  blingSelect();  delay(100);
-  //  drawTriangleCenter(matrix.width() / 4, matrix.height() / 2, 3, matrix.Color(255, 0, 0));
-  //  screenSaver(10000, 6, 6, 7, 50);
-  //  updateScreen();
-  //  delay(10000);
-  //  Reset();
-  //  Serial.println("done");
-  //  delay(1000);
-
-  //  spot(7000, 5, 10, true);
-  //  Reset();
-  //  delay(1000);
-
-  bling();
-
+// for running test code
+void test () {
   //  sinWaveM(matrix.Color(255, 255, 255), 0, 2500, 25, 2);
   //  Reset();
   //  delay(2000);
 
-  //  creditsPrint ("PhyXT", matrix.Color(255, 0, 0), 100, true, "Gears", matrix.Color(0, 255, 0), true, "GO", matrix.Color(0, 0, 255));
-  //  String m1[] = {"1", "22", "333", "4444", "55555", "666666", "7777777", "88888888", "999999999"};
-  /*
-    int loopSize = sizeof(subteams) / sizeof(subteams[0]);
-    Serial.println("Loop size: " + String(loopSize));
-    uint16_t c1[] = {matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255),matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255)};
-    credits (subteams, c1, 0, 20, loopSize, true);
-    Reset();
-    delay(2500);*/
-
-  //  audioBar(5000, 4);
-  //  Reset();
-  //  delay(2500);
-
-
   //  drawShip(20, 7, 2, WHITE);
 
-  //  for (float i = 0; i <= 2; i += 0.1) {
-  //    drawShip(20, 7, i, WHITE);
-  //    matrix.clear();
-  //  }
-  //  delay(2500);
-  //  Reset();
-  //  delay(500);
-}
-
-void bling () {
-  runBling(blingPrograms);
+  for (float i = 0; i <= 2; i += 0.1) {
+    drawShip(20, 7, i, WHITE);
+    matrix.clear();
+  }
+  delay(2500);
   Reset();
-  blingSelect();
-  delay(100);
+  delay(500);
 }

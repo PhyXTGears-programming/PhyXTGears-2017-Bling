@@ -82,8 +82,11 @@ void runBling (int order[]) {
     Serial.print("d");
     Reset();
     Serial.println("one");
-    //    if (Serial.available() > 0) {
-    //      setTeam();
-    //    }
+    if (Serial.available() > 0) {
+      bool a = serialInterp();
+      if (a) {
+        return;
+      }
+    }
   }
 }
