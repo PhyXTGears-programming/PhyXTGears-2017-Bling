@@ -182,7 +182,7 @@ void loop() {
   //  Reset();
   //  delay(1000);
 
-  //  bling();
+  bling();
 
   //  sinWaveM(matrix.Color(255, 255, 255), 0, 2500, 25, 2);
   //  Reset();
@@ -203,15 +203,15 @@ void loop() {
   //  delay(2500);
 
 
-//  drawShip(20, 7, 2, WHITE);
+  //  drawShip(20, 7, 2, WHITE);
 
-  for (float i = 0; i <= 2; i += 0.1) {
-    drawShip(20, 7, i, WHITE);
-    matrix.clear();
-  }
-  delay(2500);
-  Reset();
-  delay(500);
+  //  for (float i = 0; i <= 2; i += 0.1) {
+  //    drawShip(20, 7, i, WHITE);
+  //    matrix.clear();
+  //  }
+  //  delay(2500);
+  //  Reset();
+  //  delay(500);
 }
 
 void bling () {
