@@ -50,7 +50,7 @@ Adafruit_NeoPixel gearString = Adafruit_NeoPixel(gearStringNum, gearStringPin, N
 
 int ledNumber;
 
-const String subteams[23] = {"Shout-", " out", "to our", "sub-", " teams", "Media", "Chair-", " mans", "CAD/CAM", "Anim-", " ation",
+const String subteams[23] = {"Shout-", " out", "to our", "sub-", " teams", "Media", "Chair-", " mans", "CAD", "Anim-", " ation",
                              "Wood-", " work-", "  ing", "Fund-", " rais-", "  ing", "Out-", " reach", "Scout-", " ing", "Spirit"
                             };
 
@@ -182,7 +182,7 @@ void loop() {
   //  Reset();
   //  delay(1000);
 
-    bling();
+  bling();
 
   //  sinWaveM(matrix.Color(255, 255, 255), 0, 2500, 25, 2);
   //  Reset();
@@ -198,9 +198,14 @@ void loop() {
     Reset();
     delay(2500);*/
 
-//  audioBar(5000, 4);
-//  Reset();
-//  delay(2500);
+  //  audioBar(5000, 4);
+  //  Reset();
+  //  delay(2500);
+
+  //  drawShip(1, 1, 1, WHITE);
+  //  delay(10000);
+  //  Reset();
+  //  delay(1000);
 }
 
 void bling () {
