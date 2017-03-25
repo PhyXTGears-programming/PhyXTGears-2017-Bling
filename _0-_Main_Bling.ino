@@ -22,7 +22,7 @@
 
 #define WIDTH               40  // each
 #define HEIGHT              8   // each
-#define NUMBER              2   // number high
+#define NUMBER              2   // number of panels
 
 #define PROGS               14  // programs that exist
 #define ToRUN               12   // # to run (if oneOfEach is false) (if true, must equal number of progams being run)

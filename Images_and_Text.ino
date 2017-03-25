@@ -31,7 +31,6 @@ void printText (String Phrase, int color[], int run_time, bool scroll, bool uppe
 
 void rectangleZoom (int x, int y, int width, int height, int color, int Delay, bool noFill) {
   int iterations = min(width / 2, height / 2);
-  //  int c = 0;
   for (int i = 0; i < iterations; i++) {
     matrix.drawRect(x, y, width, height, color);
     delay(Delay);
@@ -43,9 +42,6 @@ void rectangleZoom (int x, int y, int width, int height, int color, int Delay, b
     y += 1;
     width -= 2;
     height -= 2;
-    //    if (Length < c) {
-    //      c += 1;
-    //    }
   }
 }
 
@@ -75,7 +71,7 @@ void creditsPrint (String message, uint16_t color, int Delay, bool twoText, Stri
     matrix.clear();
     delay(Delay);
   }
-  //  delay(endDelay);
+  //  delay(endDelay); removed (causing problems)
   matrix.setFont(&FONT);
 }
 

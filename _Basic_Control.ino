@@ -99,16 +99,6 @@ bool serialInterp () {
   }
 }
 
-/*
-    else if (in == "DISABLE" || in == "DISABLE\n") {
-    if (serialBool("Would you like to disable Serial? ")) {
-      noSerial = true;
-      return true;
-    } else {
-      return false;
-    }
-*/
-
 bool serialBool (String message) {
   Serial.print(message);
   String in = serialIn();

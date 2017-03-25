@@ -1,24 +1,3 @@
-/*
-  void sinWave (uint16_t color, int Delay, float mult) {
-  float w = matrix.width();
-  float he = matrix.height();
-  float h = he / 2;
-  float a = (h - 1) / w;
-  float co;
-  int c;
-  for (int i = 0; i < w; i++) {
-    co = i * a;
-    c = ceil(h - co);
-    double r = sin(i * mult) * double(c);
-    Serial.println("X: " + String(i) + " Y: " + String(round(r) + 8) + " C: " + String(c, 9) + " CO: " + String(co));
-    matrix.drawPixel((i), (round(r) + 8), color);
-    updateScreen();
-    delay(Delay);
-  }
-  delay(Delay * 2);
-  }
-*/
-
 void sinWave (uint16_t color, int Delay, int n, float mult) {
   float w = matrix.width() * n;
   float he = matrix.height();
