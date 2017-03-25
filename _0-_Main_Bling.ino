@@ -23,7 +23,7 @@
 #define NUMBER              2   // number high
 
 #define PROGS               13  // programs that exist
-#define ToRUN               11   // # to run (if oneOfEach is false) (if true, must equal number of progams being run)
+#define ToRUN               10   // # to run (if oneOfEach is false) (if true, must equal number of progams being run)
 const bool oneOfEach =      true;
 
 #define OVER                true
@@ -86,7 +86,7 @@ int firstLogoW;
 
 //                          // one of each true (false)
 //                      0  1  2  3  4  5  6  7  8  9 10 11 12
-int progLimit[PROGS] = {1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1};  // Limit for each program (or ratio)
+int progLimit[PROGS] = {1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1};  // Limit for each program (or ratio)
 int progRuns[PROGS];        // Number of times each has been selected (nothing)
 int blingPrograms[ToRUN];   // order
 
@@ -182,7 +182,7 @@ void loop() {
   //  Reset();
   //  delay(1000);
 
-  bling();
+  //  bling();
 
   //  sinWaveM(matrix.Color(255, 255, 255), 0, 2500, 25, 2);
   //  Reset();
@@ -202,10 +202,13 @@ void loop() {
   //  Reset();
   //  delay(2500);
 
-  //  drawShip(1, 1, 1, WHITE);
-  //  delay(10000);
-  //  Reset();
-  //  delay(1000);
+  for (float i = 0; i <= 3; i += 0.1) {
+    drawShip(20, 8, i, WHITE);
+    matrix.clear();
+  }
+  delay(2500);
+  Reset();
+  delay(500);
 }
 
 void bling () {

@@ -75,7 +75,7 @@ void runBling (int order[]) {
         Reset();
       case 12:
         brightOver(BRIGHT - 20);
-        audioBar(2000, 4);
+        audioBar(2500, 5);
         Reset();
         break;
     }
