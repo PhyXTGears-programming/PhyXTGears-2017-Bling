@@ -136,5 +136,5 @@ void credits (String messages[], uint16_t colors[], int LoopSize, int Delay, int
   } else {
     creditsPrint (messages[L - 1], colors[L - 1], scrollDelay, true, "", BLACK, true, "", BLACK);
   }
-  delay(Delay);
+  delay(Delay + 250);
 }
