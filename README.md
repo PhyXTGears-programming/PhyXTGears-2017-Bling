@@ -1,6 +1,6 @@
 # PhyXTGears 2017 Robot Bling
 ## Basic Information
-This is the code for the Bling on our 2017 robot.
+This is the code for the Bling on our 2017 robot.  
 Our setup uses a arduino mega to run an LED panel.
 Our LED panel (40 pixles wide by 16 pixels high) is composed of two 32x8 panels and two 8x8 panels, chained together and connected to one pin on the Arduino.
 The LEDs in the use 24-bit color, and are wired like one long string (the data for the last pixel must travel through all of the other pixels).  
