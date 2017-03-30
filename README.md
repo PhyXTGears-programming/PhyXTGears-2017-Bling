@@ -8,4 +8,4 @@ The LEDs in the use 24-bit color, and are wired like one long string (the data f
 
 ## Libraries
 We use the Adafruit NeoPixel, Adafruit NeoMatrix, and Adafruit GFX libraries.  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: You must use Adafruit GFX version 1.4.4 or triangles won't draw correctly.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: You must use Adafruit GFX version 1.4.4 or triangles won't draw correctly.
