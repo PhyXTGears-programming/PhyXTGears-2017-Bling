@@ -209,13 +209,6 @@ void test () {
   delay(500);
   Reset();
   delay(2500);
-  for (int i = 0; i < 21; i += 1) {
-    drawShip(20 + i, 7 + floor(i / 2), 2.0);
-    matrix.clear();
-  }
-  delay(2500);
-  Reset();
-  delay(500);
 
   //explodingCircle(20, 8, WHITE);
   //Reset();
