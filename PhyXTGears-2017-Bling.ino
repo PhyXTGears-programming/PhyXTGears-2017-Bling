@@ -190,6 +190,25 @@ void test () {
     drawShip(20, 7, i);
     matrix.clear();
   }
+  for (int i = 0; i < (ceil(matrix.width() / 2.0) + 10); i += 1) {
+    drawShip(ceil(matrix.width() / 2.0) + i, 7 + floor(i / 2.0), 2.0);
+    matrix.clear();
+  }
+//  for (int i = 0; i < 10; i++) {
+//    matrix.drawCircle((matrix.width() + 18) - i, i - 19, 20, WHITE);
+//    delay(1000);
+//  }
+//  matrix.fillCircle(20, 8, 10, matrix.Color(255, 255, 255));
+  int x = 20;
+  int y = 7;
+  int s = 2;
+  int rX = x + (9 * s);
+  int rY = round(y + round((4 * s) / 2.0));
+  matrix.fillCircle((round((rX - x) / 2.0) + x), rY, (s * 2), matrix.Color(255, 255, 255));
+  delay(2500);
+  delay(500);
+  Reset();
+  delay(2500);
   for (int i = 0; i < 21; i += 1) {
     drawShip(20 + i, 7 + floor(i / 2), 2.0);
     matrix.clear();
