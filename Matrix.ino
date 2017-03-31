@@ -1,6 +1,6 @@
 void strobePixel(unsigned long Stop, int Delay, int color, int num, bool Rand) {
-  unsigned long Start;
-  Stop += millis();
+  unsigned long Start = millis();
+  Stop += Start;
   while (Start < Stop) {
     for (int i = 0; i < num; i++) {
       Start = millis();
