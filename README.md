@@ -21,4 +21,4 @@ We have information on how our code works in our wiki.
 
 ## PhyXTGears Robotics Team
 We are FRC team 1720.
-phyxtgears.org
+www.phyxtgears.org
