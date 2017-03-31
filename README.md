@@ -12,5 +12,13 @@ The LEDs in the use 24-bit color, and are wired like one long string (the data f
 We use the Adafruit NeoPixel, Adafruit NeoMatrix, and Adafruit GFX libraries.  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: You must use Adafruit GFX version 1.4.4 or triangles won't draw correctly.
 
+## Get your code on our robot!
+To get you code of the robot, all you have to do us fork our code, make some simple changes to it, and create a pull request.
+If we accept your pull request, your code will be on the robot soon.  
+If you need help with Git or GitHub see our wiki.  
+We have information on how our code works in our wiki.
+
+
 ## PhyXTGears Robotics Team
 We are FRC team 1720.
+phyxtgears.org
