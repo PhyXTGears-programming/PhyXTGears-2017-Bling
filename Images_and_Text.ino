@@ -77,12 +77,12 @@ void creditsPrint (String message, uint16_t color, int Delay, bool twoText, Stri
 
 
 void credits (String messages[], uint16_t colors[], int LoopSize, int Delay, int scrollDelay, bool randColor) {
-//  String messages[LoopSize] = Messages;
-//  for (int i < LoopSize) {
-//    if () {
-//      //
-//    }
-//  }
+  //  String messages[LoopSize] = Messages;
+  //  for (int i < LoopSize) {
+  //    if () {
+  //      //
+  //    }
+  //  }
   //  uint16_t colors[LoopSize];
   //  if (randCol) {
   //    for (int i = 0; i < LoopSize; i++) {
@@ -134,3 +134,33 @@ void credits (String messages[], uint16_t colors[], int LoopSize, int Delay, int
   }
   delay(Delay + 250);
 }
+
+void ballShoot (uint16_t rCol) {
+  for (float xF = 0; xF < 40; xF++) {
+    double yF = ((xF - 2) / 6.3) - 3.3;
+    yF = pow(yF, 2);
+    //    yF = yF * -1.0;
+    yF += 1;
+    //    yF *= 0.6d;
+    //    matrix.drawPixel(floor(xF), round(yF), matrix.Color(200, 230, 0));
+    matrix.fillCircle(floor(xF), round(yF), 1, matrix.Color(200, 230, 0));
+    matrix.fillRect(36, 7, 4, 9, matrix.Color(193, 123, 52)); // tower
+    matrix.fillRect(0, 13, 4, 3, rCol);
+    updateScreen();
+    matrix.clear();
+    //    delay(250);
+  }
+  delay(750);
+  // (-((xF/7.6)-3.3)^2 + 15)
+}
+
+void robotMove (uint16_t rCol) {
+  for (int i = 17; i > 0; i--) {
+    matrix.fillRect(36, 7, 4, 9, matrix.Color(193, 123, 52)); // tower
+    matrix.fillRect(i, 13, 4, 3, rCol);
+    updateScreen();
+    matrix.clear();
+    delay(50);
+  }
+}
+
