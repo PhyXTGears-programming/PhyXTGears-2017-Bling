@@ -43,7 +43,7 @@ const bool oneOfEach =      true;
 #define WHITE               matrix.Color(255, 255, 255)
 #define BLACK               matrix.Color(0, 0, 0)
 
-#define TESTING             false
+#define TESTING             true
 
 //#define VERTICAL_FONT
 
@@ -59,9 +59,9 @@ Adafruit_NeoPixel gearString = Adafruit_NeoPixel(gearStringNum, gearStringPin, N
 int ledNumber;
 //bool noSerial = true;
 
-const String subteams[23] = {"Shout-", " out", "to our", "sub-", " teams", "Media", "Chair-", " mans", "CAD", "Anim-", " ation",
-                             "Wood-", " work-", "  ing", "Fund-", " rais-", "  ing", "Out-", " reach", "Scout-", " ing", "Spirit"
-                            };
+String subteams[23] = {"Shout-", " out", "to our", "sub-", " teams", "Media", "Chair-", " mans", "CAD", "Anim-", " ation",
+                       "Wood-", " work-", "  ing", "Fund-", " rais-", "  ing", "Out-", " reach", "Scout-", " ing", "Spirit"
+                      };
 
 /*
    sound bars
@@ -124,9 +124,9 @@ void sinWave (uint16_t color, int Delay, int n = 1, float mult = float(10));
 void screenSaver(unsigned long Stop, int tSize, int cSize, int sSize, int Speed = 35);
 void creditsPrint(String message, uint16_t color, int Delay, bool twoText = false, String message2 = "", uint16_t color2 = matrix.Color(255, 255, 255), bool threeText = false, String message3 = "", uint16_t color3 = matrix.Color(255, 255, 255), bool allCaps = true, int endDelay = 0);
 void credits (String Messages[], uint16_t colors[], int LoopSize, int Delay = 0, int scrollDelay = 25, bool randColor = false);
-void explodingCircle(int x, int y, uint16_t color=WHITE, bool fill=true);
+void explodingCircle(int x, int y, int r, uint16_t color = WHITE, bool fill = true);
 void drawShipTL (int x, int y, float s, uint16_t color);
-void drawShip(int x, int y, float s, uint16_t color=WHITE);
+void drawShip(int x, int y, float s, uint16_t color = WHITE);
 
 // ==============================================
 
@@ -158,7 +158,8 @@ void setup() {
 // put your main code here, to run repeatedly:
 void loop() {
   // if running bling
-  if (!testing) {
+  bool testBool = (testing != TESTING);
+  if (!testBool) {
     Serial.println("Starting Bling...");
     bling();
   } else {  // if testing
@@ -168,6 +169,7 @@ void loop() {
   if (Serial.available() > 0) {
     serialInterp();
   }
+  Reset();
 }
 
 // for running bling
@@ -186,31 +188,41 @@ void test () {
 
   //  drawShip(20, 7, 2, WHITE);
 
-  for (float i = 0; i <= 2; i += 0.1) {
-    drawShip(20, 7, i);
-    matrix.clear();
-  }
-  for (int i = 0; i < (ceil(matrix.width() / 2.0) + 10); i += 1) {
-    drawShip(ceil(matrix.width() / 2.0) + i, 7 + floor(i / 2.0), 2.0);
-    matrix.clear();
-  }
-//  for (int i = 0; i < 10; i++) {
-//    matrix.drawCircle((matrix.width() + 18) - i, i - 19, 20, WHITE);
-//    delay(1000);
-//  }
-//  matrix.fillCircle(20, 8, 10, matrix.Color(255, 255, 255));
-  int x = 20;
-  int y = 7;
-  int s = 2;
-  int rX = x + (9 * s);
-  int rY = round(y + round((4 * s) / 2.0));
-  matrix.fillCircle((round((rX - x) / 2.0) + x), rY, (s * 2), matrix.Color(255, 255, 255));
-  delay(2500);
-  delay(500);
-  Reset();
-  delay(2500);
+  //  const uint16_t shipColor = RED;
+  //  const uint16_t planetColor = BLUE;
+  //
+  //  for (float i = 0; i <= 2; i += 0.1) {
+  //    drawShip(20, 7, i, shipColor);
+  //    matrix.clear();
+  //  }
+  //  for (int i = 0; i < (ceil(matrix.width() / 2.0) + 10); i += 1) {
+  //    drawShip(ceil(matrix.width() / 2.0) + i, 7 + floor(i / 2.0), 2.0, shipColor);
+  //    matrix.clear();
+  //  }
+  //  const int maxS = 7;
+  //  for (int i = 0; i < (maxS + 1); i++) {
+  //    matrix.fillCircle((matrix.width() + 14) - i, i - 15, 20, planetColor);
+  //    Serial.println("circle draw");
+  //    updateScreen();
+  //    matrix.clear();
+  //    delay(100);
+  //  }
+  ////  explodingCircle((matrix.width() + 14) - maxS, maxS - 15, 20, planetColor);
+  //  delay(500);
+  //  Reset();
+  //  delay(2500);
+  //
+  //  //explodingCircle(20, 8, WHITE);
+  //  //Reset();
+  //  //delay(2500);
 
-  //explodingCircle(20, 8, WHITE);
-  //Reset();
-  //delay(2500);
+  //  brightOver(255);
+  //  matrix.fillCircle(20, 8, 1.5f, matrix.Color(200, 230, 0));
+  robotMove(BLUE);
+  for (int i = 0; i < 5; i++) {
+    ballShoot(BLUE);
+    delay(ceil(random(5000) / 10.0));
+  }
+  updateScreen();
+  delay(500);
 }
