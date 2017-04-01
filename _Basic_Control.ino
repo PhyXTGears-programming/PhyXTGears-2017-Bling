@@ -70,14 +70,14 @@ bool serialInterp () {
   in.toUpperCase();
   if (in == "TEST" || in == "TEST\n") {
     if (serialBool("Would you like to enter test mode? ")) {
-      testing = true;
+      testing = !TESTING;
       return true;
     } else {
       return false;
     }
   } else if (in == "BLING" || in == "BLING\n") {
     if (serialBool("Would you like to enable bling? ")) {
-      testing = false;
+      testing = TESTING;
       return true;
     } else {
       return false;
@@ -104,7 +104,7 @@ bool serialBool (String message) {
   String in = serialIn();
   Serial.println(in);
   in.toUpperCase();
-  if (in == "Y" || in == "YES") {
+  if (in == "Y" || in == "YES" || in == "Y\n" || in == "YES\n") {
     Serial.println("Yes");
     return true;
   } else {

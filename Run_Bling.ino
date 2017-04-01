@@ -73,7 +73,7 @@ void runBling (int order[]) {
         break;
       case 11:
         Serial.println("Loop size: " + String(loopSize));
-        credits (subteams, c1, loopSize, 0, 13, true);
+        credits(subteams, c1, loopSize, 0, 13, true);
         Reset();
       case 12:
         brightOver(BRIGHT - 20);
