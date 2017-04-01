@@ -164,7 +164,7 @@ void ballShoot (uint16_t rCol) {
 }
 
 void robotMove (uint16_t rCol) {
-  for (int i = 17; i > 0; i--) {
+  for (int i = 17; i >= 0; i--) {
     matrix.fillRect(36, 7, 4, 9, matrix.Color(193, 123, 52)); // tower
     matrix.fillRect(i, 13, 4, 3, rCol);
     updateScreen();
@@ -175,4 +175,3 @@ void robotMove (uint16_t rCol) {
     }
   }
 }
-

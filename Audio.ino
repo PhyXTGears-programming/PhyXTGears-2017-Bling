@@ -43,8 +43,8 @@ void audioBar (unsigned int Stop, int width) {
         return;
       }
     }
-    Serial.println("H: " + String(vals[0][0]));
-    Serial.println("D: " + String(vals[0][1]));
+//    Serial.println("H: " + String(vals[0][0]));
+//    Serial.println("D: " + String(vals[0][1]));
 
     updateScreen();
     delay(5);
