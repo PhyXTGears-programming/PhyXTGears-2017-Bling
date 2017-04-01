@@ -130,6 +130,7 @@ void credits (String Messages[], uint16_t colors[], int LoopSize, int Delay = 0,
 void explodingCircle(int x, int y, int r, uint16_t color = WHITE, bool fill = true);
 void drawShipTL (int x, int y, float s, uint16_t color);
 void drawShip(int x, int y, float s, uint16_t color = WHITE);
+String serialIn(int s = 0);
 
 // ==============================================
 
@@ -138,6 +139,10 @@ void setup() {
   Serial.begin(250000);
   Serial.setTimeout(5);
   Serial.println('\n');
+  //
+  Serial1.begin(19200);
+  Serial1.setTimeout(250);
+  // -----
   ledNumber = WIDTH * HEIGHT * NUMBER;
   setupPins();
   // load bitmap doesn't work
