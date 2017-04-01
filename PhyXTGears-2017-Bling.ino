@@ -24,8 +24,8 @@
 #define HEIGHT              8   // each
 #define NUMBER              2   // number of panels
 
-#define PROGS               14  // programs that exist
-#define ToRUN               12   // # to run (if oneOfEach is false) (if true, must equal number of progams being run)
+#define PROGS               15  // programs that exist
+#define ToRUN               11   // # to run (if oneOfEach is false) (if true, must equal number of progams being run)
 const bool oneOfEach =      true;
 
 #define OVER                true
@@ -91,11 +91,13 @@ int firstLogoW;
   10: 1720
   11: Honors
   12: Thank you 447 for lunch
+  13: Team # display
+  14: Ball shooting
 */
 
 //                          // one of each true (false)
-//                      0  1  2  3  4  5  6  7  8  9 10 11 12 13
-int progLimit[PROGS] = {1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2};  // Limit for each program (or ratio)
+//                      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
+int progLimit[PROGS] = {1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1};  // Limit for each program (or ratio)
 int progRuns[PROGS];        // Number of times each has been selected (nothing)
 int blingPrograms[ToRUN];   // order
 
@@ -218,11 +220,5 @@ void test () {
 
   //  brightOver(255);
   //  matrix.fillCircle(20, 8, 1.5f, matrix.Color(200, 230, 0));
-  robotMove(BLUE);
-  for (int i = 0; i < 5; i++) {
-    ballShoot(BLUE);
-    delay(ceil(random(5000) / 10.0));
-  }
-  updateScreen();
-  delay(500);
+  ball(RED);
 }

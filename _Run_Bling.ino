@@ -13,6 +13,7 @@ void runBling (int order[]) {
   String tN[] = {"71", "1529", "1720"};
   uint16_t tC[] = {matrix.Color(0, 0, 128), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0)};
   for (int i = 0; i < n; i++) {
+    int bCo = random(2);
     Serial.println("Running #" + String(i + 1) + ": " + String(blingPrograms[i]));
     switch (blingPrograms[i]) {
       case 0:
@@ -82,6 +83,14 @@ void runBling (int order[]) {
         break;
       case 13:
         credits (tN, tC, 2);
+        Reset();
+        break;
+      case 14:
+        if (bCo == 0) {
+          ball(RED);
+        } else {
+          ball(BLUE);
+        }
         Reset();
         break;
     }

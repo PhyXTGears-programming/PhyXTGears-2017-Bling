@@ -135,6 +135,16 @@ void credits (String messages[], uint16_t colors[], int LoopSize, int Delay, int
   delay(Delay + 250);
 }
 
+void ball (uint16_t rCol) {
+  robotMove(rCol);
+  for (int i = 0; i < 3; i++) {
+    delay(random(500));
+    ballShoot(rCol);
+  }
+  updateScreen();
+  delay(500);
+}
+
 void ballShoot (uint16_t rCol) {
   for (float xF = 0; xF < 40; xF++) {
     double yF = ((xF - 2) / 6.3) - 3.3;
@@ -150,7 +160,6 @@ void ballShoot (uint16_t rCol) {
     matrix.clear();
     //    delay(250);
   }
-  delay(750);
   // (-((xF/7.6)-3.3)^2 + 15)
 }
 
@@ -161,6 +170,9 @@ void robotMove (uint16_t rCol) {
     updateScreen();
     matrix.clear();
     delay(70);
+    if (i == 17) {
+      delay(150);
+    }
   }
 }
 
