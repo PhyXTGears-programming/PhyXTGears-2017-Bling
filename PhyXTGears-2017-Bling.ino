@@ -137,7 +137,7 @@ String serialIn(int s = 0);
 // put your setup code here, to run once:
 void setup() {
   Serial.begin(250000);
-  Serial.setTimeout(5);
+  Serial.setTimeout(25);
   Serial.println('\n');
   //
   Serial1.begin(19200);
