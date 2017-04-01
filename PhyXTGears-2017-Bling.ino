@@ -43,7 +43,7 @@ const bool oneOfEach =      true;
 #define WHITE               matrix.Color(255, 255, 255)
 #define BLACK               matrix.Color(0, 0, 0)
 
-#define TESTING             true
+#define TESTING             false
 
 //#define VERTICAL_FONT
 
@@ -105,6 +105,7 @@ int blingPrograms[ToRUN];   // order
 
 bool progBright = false;
 int bright;
+String tN[] = {"", "", "1720"};
 
 // ----
 

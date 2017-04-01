@@ -10,7 +10,6 @@ void runBling (int order[]) {
   uint16_t co10[3] = {GREEN, GREEN, GREEN};
   uint16_t c1[] = {matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255)};
   int loopSize = sizeof(subteams) / sizeof(subteams[0]);
-  String tN[] = {"71", "1529", "1720"};
   uint16_t tC[] = {matrix.Color(0, 0, 128), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0)};
   for (int i = 0; i < n; i++) {
     int bCo = random(2);
