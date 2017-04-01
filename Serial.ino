@@ -1,14 +1,14 @@
 void roboRioSerial() {
   String rI = serialIn(0);
-  rI.toUpperCase();
+//  rI.toUpperCase();
   Serial.println(rI);
-  if (rI == "BALL") {
+  if (rI == "ball") {
     matrix.clear();
     ball(WHITE);
-  } else if (rI == "BALLB") {
+  } else if (rI == "ballb") {
     matrix.clear();
     ball(BLUE);
-  } else if (rI == "BALLR") {
+  } else if (rI == "ballr") {
     matrix.clear();
     ball(RED);
   } else {

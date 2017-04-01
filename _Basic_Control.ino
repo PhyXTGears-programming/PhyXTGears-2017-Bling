@@ -20,7 +20,11 @@ void clearScreen() {
 
 void updateScreen() {
   brightnessControl();
+  unsigned long c = 0;
+  unsigned long d = micros();
   matrix.show();
+  c = micros();
+//  Serial.println("Show took " + String(float(c - d) / 1000, 3) + " milliseconds");
   if (Serial.available() > 0) {
     roboRioSerial();
   }
