@@ -1,5 +1,4 @@
-
-void explodingCircle (int x, int y, int r, uint16_t color, bool fill=true) {
+void explodingCircle (int x, int y, int r, uint16_t color, bool fill) {
   matrix.drawCircle(x, y, r, color);
   if (fill){
     matrix.fillCircle(x, y, r, color);

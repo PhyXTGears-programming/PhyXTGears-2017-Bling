@@ -10,9 +10,9 @@ void runBling (int order[]) {
   uint16_t co10[3] = {GREEN, GREEN, GREEN};
   uint16_t c1[] = {matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255)};
   int loopSize = sizeof(subteams) / sizeof(subteams[0]);
-  String tN[] = {"71", "1529", "1720"};
   uint16_t tC[] = {matrix.Color(0, 0, 128), matrix.Color(255, 0, 0), matrix.Color(0, 255, 0)};
   for (int i = 0; i < n; i++) {
+    int bCo = random(2);
     Serial.println("Running #" + String(i + 1) + ": " + String(blingPrograms[i]));
     switch (blingPrograms[i]) {
       case 0:
@@ -73,7 +73,7 @@ void runBling (int order[]) {
         break;
       case 11:
         Serial.println("Loop size: " + String(loopSize));
-        credits (subteams, c1, loopSize, 0, 13, true);
+        credits(subteams, c1, loopSize, 0, 13, true);
         Reset();
       case 12:
         brightOver(BRIGHT - 20);
@@ -82,6 +82,14 @@ void runBling (int order[]) {
         break;
       case 13:
         credits (tN, tC, 2);
+        Reset();
+        break;
+      case 14:
+        if (bCo == 0) {
+          ball(RED);
+        } else {
+          ball(BLUE);
+        }
         Reset();
         break;
     }
