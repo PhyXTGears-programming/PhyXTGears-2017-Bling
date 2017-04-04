@@ -1,6 +1,6 @@
 void roboRioSerial() {
-  String rI = serialIn(0);
-//  rI.toUpperCase();
+  String rI = serialIn(1);
+  //  rI.toUpperCase();
   Serial.println(rI);
   if (rI == "ball") {
     matrix.clear();
@@ -21,14 +21,20 @@ bool serialInterp () {
   //    Serial.println("Serial is disabled");
   //    return false;
   //  }
+  String in;
   while (Serial.available() > 0) {
-    Serial.readString();
+    in = Serial.readString();
   }
-  Serial.println("What would you like to do?");
-  Serial.println("\ttest");
-  Serial.println("\tbling");
-  Serial.println("\tteam");
-  String in = serialIn();
+  in.toUpperCase();
+  if (in == "TEST" || in == "TEST\n" || in == "BLING" || in == "BLING\n" || in == "TEAM" || in == "TEAM\n") {
+    Serial.println("What would you like to do?");
+    Serial.println("\ttest");
+    Serial.println("\tbling");
+    Serial.println("\tteam");
+    in = serialIn();
+  } else {
+    Serial.print("Using original value: ");
+  }
   Serial.println(in);
   in.toUpperCase();
   if (in == "TEST" || in == "TEST\n") {

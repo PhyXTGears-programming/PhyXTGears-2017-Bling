@@ -90,7 +90,7 @@ int firstLogoW;
   9 : Spotlight
   10: 1720
   11: Honors
-  12: Thank you 447 for lunch
+  12: Audio bar
   13: Team # display
   14: Ball shooting
 */
