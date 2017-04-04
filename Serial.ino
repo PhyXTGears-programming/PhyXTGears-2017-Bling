@@ -22,9 +22,7 @@ bool serialInterp () {
   //    return false;
   //  }
   String in;
-  while (Serial.available() > 0) {
-    in = Serial.readString();
-  }
+  in = serialIn();
   in.toUpperCase();
   Serial.println(in);
   if (!(in == "TEST" || in == "TEST\n" || in == "BLING" || in == "BLING\n" || in == "TEAM" || in == "TEAM\n")) {
@@ -88,7 +86,7 @@ bool serialBool (String message) {
 String serialIn (int s) {
   if (s == 0) {
     while (Serial.available() < 1) {}
-    return Serial.readString();
+    return Serial.readStringUntil('\n');
   } else {
     Serial.println("Serial 1 used");
     while (Serial1.available() < 1) {}

@@ -43,7 +43,7 @@ const bool oneOfEach =      true;
 #define WHITE               matrix.Color(255, 255, 255)
 #define BLACK               matrix.Color(0, 0, 0)
 
-#define TESTING             false
+#define TESTING             true
 
 //#define VERTICAL_FONT
 
@@ -194,37 +194,38 @@ void test () {
   //  Reset();
   //  delay(2000);
 
-  //  drawShip(20, 7, 2, WHITE);
+  const uint16_t shipColor = RED;
+  const uint16_t planetColor = BLUE;
 
-  //  const uint16_t shipColor = RED;
-  //  const uint16_t planetColor = BLUE;
-  //
-  //  for (float i = 0; i <= 2; i += 0.1) {
-  //    drawShip(20, 7, i, shipColor);
-  //    matrix.clear();
-  //  }
-  //  for (int i = 0; i < (ceil(matrix.width() / 2.0) + 10); i += 1) {
-  //    drawShip(ceil(matrix.width() / 2.0) + i, 7 + floor(i / 2.0), 2.0, shipColor);
-  //    matrix.clear();
-  //  }
-  //  const int maxS = 7;
-  //  for (int i = 0; i < (maxS + 1); i++) {
-  //    matrix.fillCircle((matrix.width() + 14) - i, i - 15, 20, planetColor);
-  //    Serial.println("circle draw");
-  //    updateScreen();
-  //    matrix.clear();
-  //    delay(100);
-  //  }
-  ////  explodingCircle((matrix.width() + 14) - maxS, maxS - 15, 20, planetColor);
-  //  delay(500);
-  //  Reset();
-  //  delay(2500);
-  //
-  //  //explodingCircle(20, 8, WHITE);
-  //  //Reset();
-  //  //delay(2500);
+  for (float i = 0; i <= 2; i += 0.1) {
+    drawShip(20, 7, i, shipColor);
+    matrix.clear();
+  }
+  for (int i = 0; i < (ceil(matrix.width() / 2.0) + 10); i += 1) {
+    drawShip(ceil(matrix.width() / 2.0) + i, 7 + floor(i / 2.0), 2.0, shipColor);
+    matrix.clear();
+  }
+  const int maxS = 12;
+  for (int i = 0; i < maxS; i++) {
+    matrix.fillCircle((matrix.width() + 18) - i, i - 15, 20, planetColor);
+    //    Serial.println("circle draw");
+    updateScreen();
+    matrix.clear();
+    delay(100);
+  }
+  for (int i = 0; i < 30; i++) {
+    drawShip(20, 7, 2, shipColor);
+  }
+  //  explodingCircle((matrix.width() + 14) - maxS, maxS - 15, 20, planetColor);
+  delay(500);
+  Reset();
+  delay(2500);
+
+  //explodingCircle(20, 8, WHITE);
+  //Reset();
+  //delay(2500);
 
   //  brightOver(255);
   //  matrix.fillCircle(20, 8, 1.5f, matrix.Color(200, 230, 0));
-  ball(RED);
+  //  ball(RED);
 }
