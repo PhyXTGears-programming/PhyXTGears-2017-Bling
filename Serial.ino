@@ -26,7 +26,8 @@ bool serialInterp () {
     in = Serial.readString();
   }
   in.toUpperCase();
-  if (in == "TEST" || in == "TEST\n" || in == "BLING" || in == "BLING\n" || in == "TEAM" || in == "TEAM\n") {
+  Serial.println(in);
+  if (!(in == "TEST" || in == "TEST\n" || in == "BLING" || in == "BLING\n" || in == "TEAM" || in == "TEAM\n")) {
     Serial.println("What would you like to do?");
     Serial.println("\ttest");
     Serial.println("\tbling");
