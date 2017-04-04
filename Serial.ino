@@ -22,9 +22,7 @@ bool serialInterp () {
   //    return false;
   //  }
   String in;
-  while (Serial.available() > 0) {
-    in = Serial.readString();
-  }
+  in = serialIn();
   in.toUpperCase();
   Serial.println(in);
   if (!(in == "TEST" || in == "TEST\n" || in == "BLING" || in == "BLING\n" || in == "TEAM" || in == "TEAM\n")) {
