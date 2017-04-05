@@ -194,11 +194,11 @@ void test () {
   //  Reset();
   //  delay(2000);
 
-  drawDeath(47, -4, BLUE, BLACK, WHITE);
-  drawShip(8, 11, 1.5, RED);
-  drawRay(GREEN, 8, 11);
-  updateScreen();
-  delay(99999);
+//  drawDeath(47, -4, BLUE, BLACK, WHITE);
+//  drawShip(8, 11, 1.5, RED);
+//  drawRay(GREEN, 8, 11);
+//  updateScreen();
+//  delay(99999);
 
   const uint16_t shipColor = RED;
   const uint16_t planetColor = BLUE;
