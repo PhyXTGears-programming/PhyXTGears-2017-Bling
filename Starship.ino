@@ -16,14 +16,14 @@ void explodingCircle (int x, int y, int radius, uint16_t color, bool fill) {
   }
   updateScreen();
   delay(200);
-  for(int i = 0; i < radius * 2; i++){
+  for(int i = -2; i < radius * 3; i++){
     matrix.clear();
-    for(int j = 0; j < radius * 1.5; j++){
+    for(int j = 0; j < radius * 2; j++){
       //KEEP THIS: matrix.drawPixel(random(x - r + i, x + r + 2 + i), random(y - r + i, y + r + 2 + i), color);
-      matrix.drawPixel(random(x + radius + i - 4, x + radius + i), random(y + radius + i - 4, y + radius + i))
-      matrix.drawPixel(random(x + radius + i - 4, x + radius + i), random(y - radius - i - 4, y - radius - i))
-      matrix.drawPixel(random(x - radius + 4, x - radius - i), random(y + radius + i - 4, y + radius + i))
-      matrix.drawPixel(random(x - radius - i), random(x - radius - i))
+      matrix.drawPixel(random(x + radius + i - 3, x + radius + i), random(y + radius + i - 3, y + radius + i));
+      matrix.drawPixel(random(x + radius + i - 3, x + radius + i), random(y - radius - i + 3, y - radius - i));
+      matrix.drawPixel(random(x - radius + 3, x - radius - i), random(y + radius + i - 3, y + radius + i));
+      matrix.drawPixel(random(x - radius - i + 3, x - radius - i), random(y - radius - i + 3, y - radius - i));
     }
     updateScreen();
     delay(100);
