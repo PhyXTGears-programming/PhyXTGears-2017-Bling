@@ -43,7 +43,7 @@ const bool oneOfEach =      true;
 #define WHITE               matrix.Color(255, 255, 255)
 #define BLACK               matrix.Color(0, 0, 0)
 
-#define TESTING             false
+#define TESTING             true
 
 //#define VERTICAL_FONT
 
@@ -90,7 +90,7 @@ int firstLogoW;
   9 : Spotlight
   10: 1720
   11: Honors
-  12: Thank you 447 for lunch
+  12: Audio bar
   13: Team # display
   14: Ball shooting
 */
@@ -194,38 +194,67 @@ void test () {
   //  Reset();
   //  delay(2000);
 
-  //  drawShip(20, 7, 2, WHITE);
+//  drawDeath(47, -4, BLUE, BLACK, WHITE);
+//  drawShip(8, 11, 1.5, RED);
+//  drawRay(GREEN, 8, 11);
+//  updateScreen();
+//  delay(99999);
 
-  //  const uint16_t shipColor = RED;
-  //  const uint16_t planetColor = BLUE;
-  //
-  //  for (float i = 0; i <= 2; i += 0.1) {
-  //    drawShip(20, 7, i, shipColor);
-  //    matrix.clear();
-  //  }
-  //  for (int i = 0; i < (ceil(matrix.width() / 2.0) + 10); i += 1) {
-  //    drawShip(ceil(matrix.width() / 2.0) + i, 7 + floor(i / 2.0), 2.0, shipColor);
-  //    matrix.clear();
-  //  }
-  //  const int maxS = 7;
-  //  for (int i = 0; i < (maxS + 1); i++) {
-  //    matrix.fillCircle((matrix.width() + 14) - i, i - 15, 20, planetColor);
-  //    Serial.println("circle draw");
-  //    updateScreen();
-  //    matrix.clear();
-  //    delay(100);
-  //  }
-  ////  explodingCircle((matrix.width() + 14) - maxS, maxS - 15, 20, planetColor);
-  //  delay(500);
-  //  Reset();
-  //  delay(2500);
-  //
-  //  //explodingCircle(20, 8, WHITE);
-  //  //Reset();
-  //  //delay(2500);
+  const uint16_t shipColor = RED;
+  const uint16_t planetColor = BLUE;
+  const uint16_t insetColor = BLACK;
+  const uint16_t middleDot = WHITE;
+  const uint16_t rayColor = GREEN;
+
+  for (float i = 0; i <= 2; i += 0.1) {
+    drawShip(20, 7, i, shipColor);
+    matrix.clear();
+    delay(25);
+  }
+  for (int i = 0; i < (ceil(matrix.width() / 2.0) + 9); i += 1) {
+    drawShip(ceil(matrix.width() / 2.0) + i, 7 + floor(i / 2.0), 2.0, shipColor);
+    matrix.clear();
+    delay(10);
+  }
+  const int maxS = 12;
+  for (int i = 0; i < maxS; i++) {
+    drawDeath((matrix.width() + 18) - i, i - 15, planetColor, insetColor, middleDot);
+    //    Serial.println("circle draw");
+    updateScreen();
+    matrix.clear();
+    delay(500);
+  }
+  for (int i = 0; i < 18; i++) {
+    drawDeath(matrix.width() + 7, -4, planetColor, insetColor, middleDot);
+    drawShip(25 - i, matrix.height() - floor(i / 3.0), 1.5, shipColor);
+    matrix.clear();
+    delay(50);
+  }
+  //  explodingCircle((matrix.width() + 14) - maxS, maxS - 15, 20, planetColor);
+  delay(500);
+  Reset();
+  delay(2500);
+
+  //explodingCircle(20, 8, WHITE);
+  //Reset();
+  //delay(2500);
 
   //  brightOver(255);
   //  matrix.fillCircle(20, 8, 1.5f, matrix.Color(200, 230, 0));
 //  ball(RED);
   explodingCircle(20, 7, 4, BLUE, true);
+}
+
+void drawDeath (int x, int y, uint16_t color, uint16_t color2, uint16_t color3) {
+  matrix.fillCircle(x, y, 20, color);
+  matrix.fillCircle(x - 12, y + 9, 2, color2);
+  matrix.drawPixel(x - 12, y + 9, color3);
+}
+
+void drawRay (uint16_t color, int xI, int yI) {
+  const int x = 28;
+  const int y = 8;
+  matrix.drawLine(37, 7, x, y, color);
+  matrix.drawLine(33, 3, x, y, color);
+  matrix.drawLine(x, y, xI, yI, color);
 }

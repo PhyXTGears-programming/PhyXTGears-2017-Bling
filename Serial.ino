@@ -21,14 +21,19 @@ bool serialInterp () {
   //    Serial.println("Serial is disabled");
   //    return false;
   //  }
-  while (Serial.available() > 0) {
-    Serial.readString();
+  String in;
+  in = serialIn();
+  in.toUpperCase();
+  Serial.println(in);
+  if (!(in == "TEST" || in == "TEST\n" || in == "BLING" || in == "BLING\n" || in == "TEAM" || in == "TEAM\n")) {
+    Serial.println("What would you like to do?");
+    Serial.println("\ttest");
+    Serial.println("\tbling");
+    Serial.println("\tteam");
+    in = serialIn();
+  } else {
+    Serial.print("Using original value: ");
   }
-  Serial.println("What would you like to do?");
-  Serial.println("\ttest");
-  Serial.println("\tbling");
-  Serial.println("\tteam");
-  String in = serialIn();
   Serial.println(in);
   in.toUpperCase();
   if (in == "TEST" || in == "TEST\n") {
@@ -81,7 +86,7 @@ bool serialBool (String message) {
 String serialIn (int s) {
   if (s == 0) {
     while (Serial.available() < 1) {}
-    return Serial.readString();
+    return Serial.readStringUntil('\n');
   } else {
     Serial.println("Serial 1 used");
     while (Serial1.available() < 1) {}

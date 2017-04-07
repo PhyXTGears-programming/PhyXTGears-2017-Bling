@@ -75,6 +75,7 @@ void runBling (int order[]) {
         Serial.println("Loop size: " + String(loopSize));
         credits(subteams, c1, loopSize, 0, 13, true);
         Reset();
+        break;
       case 12:
         brightOver(BRIGHT - 20);
         audioBar(2500, 5);
