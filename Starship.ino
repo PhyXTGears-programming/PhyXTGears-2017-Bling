@@ -1,17 +1,32 @@
-void explodingCircle (int x, int y, int r, uint16_t color, bool fill) {
-  matrix.drawCircle(x, y, r, color);
+//void writeTextFile (string File, string dataWrite, bool append = false) {
+//  std::ofstream myfile;
+//  if (append) {
+//    myfile.open(File, std::fstream::out | std::fstream::app);
+//  } else {
+//    myfile.open(File, std::fstream::out);
+//  }
+//  myfile << dataWrite;
+//  myfile.close();
+//}
+
+void explodingCircle (int x, int y, int radius, uint16_t color, bool fill) {
+  matrix.drawCircle(x, y, radius, color);
   if (fill){
-    matrix.fillCircle(x, y, r, color);
+    matrix.fillCircle(x, y, radius, color);
   }
   updateScreen();
   delay(200);
-  for(int i = 0; i < 0.5 * r; i++){
+  for(int i = 0; i < radius * 2; i++){
     matrix.clear();
-    for(int i = 0; i < 0.5 * r; i++){
-      matrix.drawPixel(random(x + i, x + i + 2), random(y + i, y + 1 + 2), color);
+    for(int j = 0; j < radius * 1.5; j++){
+      //KEEP THIS: matrix.drawPixel(random(x - r + i, x + r + 2 + i), random(y - r + i, y + r + 2 + i), color);
+      matrix.drawPixel(random(x + radius + i - 4, x + radius + i), random(y + radius + i - 4, y + radius + i))
+      matrix.drawPixel(random(x + radius + i - 4, x + radius + i), random(y - radius - i - 4, y - radius - i))
+      matrix.drawPixel(random(x - radius + 4, x - radius - i), random(y + radius + i - 4, y + radius + i))
+      matrix.drawPixel(random(x - radius - i), random(x - radius - i))
     }
     updateScreen();
-    delay(30);
+    delay(100);
   }
 }
 

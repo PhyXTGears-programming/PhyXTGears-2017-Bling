@@ -1,5 +1,5 @@
 void roboRioSerial() {
-  String rI = serialIn(0);
+  String rI = serialIn(1);
 //  rI.toUpperCase();
   Serial.println(rI);
   if (rI == "ball") {

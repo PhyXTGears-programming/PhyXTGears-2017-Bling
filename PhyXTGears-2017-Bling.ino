@@ -226,5 +226,6 @@ void test () {
 
   //  brightOver(255);
   //  matrix.fillCircle(20, 8, 1.5f, matrix.Color(200, 230, 0));
-  ball(RED);
+//  ball(RED);
+  explodingCircle(20, 7, 4, BLUE, true);
 }
