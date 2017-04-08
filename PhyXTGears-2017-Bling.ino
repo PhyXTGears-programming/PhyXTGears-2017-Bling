@@ -131,6 +131,7 @@ void explodingCircle(int x, int y, int r, uint16_t color = WHITE, bool fill = tr
 void drawShipTL (int x, int y, float s, uint16_t color);
 void drawShip(int x, int y, float s, uint16_t color = WHITE);
 String serialIn(int s = 0);
+void ballShoot (uint16_t rCol, int n = 1, int s = 0);
 
 // ==============================================
 
@@ -194,12 +195,31 @@ void test () {
   //  Reset();
   //  delay(2000);
 
-//  drawDeath(47, -4, BLUE, BLACK, WHITE);
-//  drawShip(8, 11, 1.5, RED);
-//  drawRay(GREEN, 8, 11);
-//  updateScreen();
-//  delay(99999);
+  //  drawDeath(47, -4, BLUE, BLACK, WHITE);
+  //  drawShip(8, 11, 1.5, RED);
+  //  drawRay(GREEN, 8, 11);
+  //  updateScreen();
+  //  delay(99999);
+  //  ball (GREEN);
+  //  delay(1000);
+  doShip();
+}
 
+void drawDeath (int x, int y, uint16_t color, uint16_t color2, uint16_t color3) {
+  matrix.fillCircle(x, y, 20, color);
+  matrix.fillCircle(x - 12, y + 9, 2, color2);
+  matrix.drawPixel(x - 12, y + 9, color3);
+}
+
+void drawRay (uint16_t color, int xI, int yI) {
+  const int x = 28;
+  const int y = 8;
+  matrix.drawLine(37, 7, x, y, color);
+  matrix.drawLine(33, 3, x, y, color);
+  matrix.drawLine(x, y, xI, yI, color);
+}
+
+void doShip () {
   const uint16_t shipColor = RED;
   const uint16_t planetColor = BLUE;
   const uint16_t insetColor = BLACK;
@@ -218,11 +238,12 @@ void test () {
   }
   const int maxS = 12;
   for (int i = 0; i < maxS; i++) {
-    drawDeath((matrix.width() + 18) - i, i - 15, planetColor, insetColor, middleDot);
+    drawDeath((matrix.width() + 13) - i, i - 15, planetColor, insetColor, middleDot);
     //    Serial.println("circle draw");
+    matrix.drawPixel(39, 15, WHITE);
     updateScreen();
     matrix.clear();
-    delay(500);
+    delay(2500);
   }
   for (int i = 0; i < 18; i++) {
     drawDeath(matrix.width() + 7, -4, planetColor, insetColor, middleDot);
@@ -241,20 +262,7 @@ void test () {
 
   //  brightOver(255);
   //  matrix.fillCircle(20, 8, 1.5f, matrix.Color(200, 230, 0));
-//  ball(RED);
+  //  ball(RED);
   explodingCircle(20, 7, 4, BLUE, true);
 }
 
-void drawDeath (int x, int y, uint16_t color, uint16_t color2, uint16_t color3) {
-  matrix.fillCircle(x, y, 20, color);
-  matrix.fillCircle(x - 12, y + 9, 2, color2);
-  matrix.drawPixel(x - 12, y + 9, color3);
-}
-
-void drawRay (uint16_t color, int xI, int yI) {
-  const int x = 28;
-  const int y = 8;
-  matrix.drawLine(37, 7, x, y, color);
-  matrix.drawLine(33, 3, x, y, color);
-  matrix.drawLine(x, y, xI, yI, color);
-}

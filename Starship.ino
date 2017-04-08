@@ -9,14 +9,14 @@
 //  myfile.close();
 //}
 
-void explodingCircle (int x, int y, int radius, uint16_t color, bool fill) {
+void explodingCircle (int x, int y, int radius, uint16_t color, bool fill) {/*
   matrix.drawCircle(x, y, radius, color);
   if (fill){
     matrix.fillCircle(x, y, radius, color);
   }
   updateScreen();
   delay(200);
-  for(int i = -2; i < radius * 3; i++){
+  for(int i = 0; i < radius * 3; i++){
     matrix.clear();
     for(int j = 0; j < radius * 2; j++){
       //KEEP THIS: matrix.drawPixel(random(x - r + i, x + r + 2 + i), random(y - r + i, y + r + 2 + i), color);
@@ -27,7 +27,7 @@ void explodingCircle (int x, int y, int radius, uint16_t color, bool fill) {
     }
     updateScreen();
     delay(100);
-  }
+  }*/
 }
 
 void drawShipTL (int x, int y, float s, uint16_t color) {

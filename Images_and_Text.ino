@@ -139,14 +139,18 @@ void ball (uint16_t rCol) {
   robotMove(rCol);
   for (int i = 0; i < 3; i++) {
     delay(random(500));
-    ballShoot(rCol);
+    ballShoot(rCol, random(2, 5), random(4, 6));
   }
   updateScreen();
   delay(500);
 }
 
-void ballShoot (uint16_t rCol) {
-  for (float xF = 0; xF < 40; xF++) {
+void ballShoot (uint16_t rCol, int n, int s) {
+  int m = 40;
+  if (n > 1) {
+    m += (n * s);
+  }
+  for (float xF = 0; xF < m; xF++) {
     double yF = ((xF - 2) / 6.3) - 3.3;
     yF = pow(yF, 2);
     //    yF = yF * -1.0;
@@ -154,11 +158,23 @@ void ballShoot (uint16_t rCol) {
     //    yF *= 0.6d;
     //    matrix.drawPixel(floor(xF), round(yF), matrix.Color(200, 230, 0));
     matrix.fillCircle(floor(xF), round(yF), 1, matrix.Color(200, 230, 0));
+    //    delay(250);
+    if (n > 1) {
+      for (int iS = 1; iS < n; iS++) {
+        int i = iS * s;
+        double xFT = xF - i;
+        double yFT = ((xFT - 2) / 6.3) - 3.3;
+        yFT = pow(yFT, 2);
+        yFT += 1;
+        matrix.fillCircle(floor(xFT), round(yFT), 1, matrix.Color(200, 230, 0));
+        Serial.println("X: " + String(xF));
+        Serial.println("Xt: " + String(xFT));
+      }
+    }
     matrix.fillRect(36, 7, 4, 9, matrix.Color(193, 123, 52)); // tower
-    matrix.fillRect(0, 13, 4, 3, rCol);
+    matrix.fillRect(0, 13, 4, 3, rCol); // robot
     updateScreen();
     matrix.clear();
-    //    delay(250);
   }
   // (-((xF/7.6)-3.3)^2 + 15)
 }
