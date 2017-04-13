@@ -29,7 +29,8 @@
 const bool oneOfEach =      true;
 
 #define OVER                true
-#define BRIGHT              55
+//#define BRIGHT              55
+#define BRIGHT              25
 
 #define FONT                FreeSerif12pt7b
 #define FIRST_FONT          FreeSansBoldOblique9pt7b
@@ -44,6 +45,8 @@ const bool oneOfEach =      true;
 #define BLACK               matrix.Color(0, 0, 0)
 
 #define TESTING             true
+
+#define ROBORIO_SPEED       9600
 
 //#define VERTICAL_FONT
 
@@ -109,6 +112,8 @@ String tN[] = {"", "", "1720"};
 
 // ----
 
+String ROBOT;
+
 // ==============================================
 
 void zigZag(unsigned long Stop, uint16_t color = matrix.Color(255, 255, 255), uint16_t color2 = matrix.Color(255, 255, 255), int d = 100, int gap = 1);
@@ -128,8 +133,8 @@ void screenSaver(unsigned long Stop, int tSize, int cSize, int sSize, int Speed 
 void creditsPrint(String message, uint16_t color, int Delay, bool twoText = false, String message2 = "", uint16_t color2 = matrix.Color(255, 255, 255), bool threeText = false, String message3 = "", uint16_t color3 = matrix.Color(255, 255, 255), bool allCaps = true, int endDelay = 0);
 void credits (String Messages[], uint16_t colors[], int LoopSize, int Delay = 0, int scrollDelay = 25, bool randColor = false);
 void explodingCircle(int x, int y, int r, uint16_t color = WHITE, bool fill = true);
-void drawShipTL (int x, int y, float s, uint16_t color);
-void drawShip(int x, int y, float s, uint16_t color = WHITE);
+void drawShipTL (int x, int y, float s, uint16_t color, bool Show = true);
+void drawShip(int x, int y, float s, uint16_t color = WHITE, bool Show = true);
 String serialIn(int s = 0);
 
 // ==============================================
@@ -140,8 +145,8 @@ void setup() {
   Serial.setTimeout(25);
   Serial.println('\n');
   //
-  Serial1.begin(19200);
-  Serial1.setTimeout(250);
+  Serial1.begin(ROBORIO_SPEED);
+  Serial1.setTimeout(100);
   // -----
   ledNumber = WIDTH * HEIGHT * NUMBER;
   setupPins();
@@ -226,7 +231,9 @@ void test () {
   }
   for (int i = 0; i < 18; i++) {
     drawDeath(matrix.width() + 7, -4, planetColor, insetColor, middleDot);
-    drawShip(25 - i, matrix.height() - floor(i / 3.0), 1.5, shipColor);
+    drawShip(25 - i, matrix.height() - floor(i / 3.0), 1.5, shipColor, false);
+    drawRay(25 - i, matrix.height() - floor(i / 3.0), GREEN);
+    matrix.show();
     matrix.clear();
     delay(50);
   }
@@ -241,8 +248,7 @@ void test () {
 
   //  brightOver(255);
   //  matrix.fillCircle(20, 8, 1.5f, matrix.Color(200, 230, 0));
-//  ball(RED);
-  explodingCircle(20, 7, 4, BLUE, true);
+  //  ball(RED);
 }
 
 void drawDeath (int x, int y, uint16_t color, uint16_t color2, uint16_t color3) {
@@ -251,7 +257,7 @@ void drawDeath (int x, int y, uint16_t color, uint16_t color2, uint16_t color3) 
   matrix.drawPixel(x - 12, y + 9, color3);
 }
 
-void drawRay (uint16_t color, int xI, int yI) {
+void drawRay (int xI, int yI, uint16_t color) {
   const int x = 28;
   const int y = 8;
   matrix.drawLine(37, 7, x, y, color);

@@ -1,16 +1,48 @@
 void roboRioSerial() {
   String rI = serialIn(1);
-//  rI.toUpperCase();
+  rI.replace("\n", "");
+  //  rI.toUpperCase();
   Serial.println(rI);
-  if (rI == "ball") {
-    matrix.clear();
-    ball(WHITE);
-  } else if (rI == "ballb") {
-    matrix.clear();
-    ball(BLUE);
-  } else if (rI == "ballr") {
+  // -----
+  String rIC = rI;
+  String rIR = rI;
+  String rIB = rI;
+  String rIA = rI;
+  String rB = rI;
+  String rR = rI;
+  //
+  rIC.replace("ballc", "#");
+  rIR.replace("ballr", "#");
+  rIB.replace("ballb", "#");
+  rIA.replace("ball", "#");
+  rB.replace("blue", "#");
+  rR.replace("red", "#");
+  // -----
+  if (rIC != rI) {
+    if (ROBOT == "red") {
+      Serial1.end();
+      ball(RED);
+      Serial1.begin(ROBORIO_SPEED);
+    } else if (ROBOT == "blue") {
+      Serial1.end();
+      ball(BLUE);
+      Serial1.begin(ROBORIO_SPEED);
+    } else {
+      Serial.println("Color Error");
+    }
+  } else if (rIR != rI) {
     matrix.clear();
     ball(RED);
+  } else if (rIB != rI) {
+    matrix.clear();
+    ball(BLUE);
+  } else if (rIA != rI) {
+    matrix.clear();
+    ball(WHITE);
+  } else if (rR != rI) {
+    ROBOT = "red";
+  } else if (rB != rI) {
+    ROBOT = "blue";
   } else {
     Serial.println("Invalid roboRio input");
   }
