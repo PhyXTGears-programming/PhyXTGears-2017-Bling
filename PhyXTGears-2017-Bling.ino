@@ -30,7 +30,7 @@ const bool oneOfEach =      true;
 
 #define OVER                true
 //#define BRIGHT              55
-#define BRIGHT              25
+#define BRIGHT              10
 
 #define FONT                FreeSerif12pt7b
 #define FIRST_FONT          FreeSansBoldOblique9pt7b
@@ -53,6 +53,8 @@ const bool oneOfEach =      true;
 //  ----------------------------------------  end define  ----------------------------------------  //
 
 bool testing = false;
+
+// int BRIGHT = 25;
 
 //Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(WIDTH, HEIGHT, 1, NUMBER, MATRIX, NEO_TILE_TOP + NEO_TILE_LEFT + NEO_TILE_COLUMNS + NEO_TILE_ZIGZAG + NEO_MATRIX_COLUMNS + NEO_MATRIX_TOP + NEO_MATRIX_BOTTOM + NEO_MATRIX_ZIGZAG  + NEO_GRB + NEO_KHZ800);
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(WIDTH, HEIGHT, 1, NUMBER, MATRIX, NEO_TILE_BOTTOM + NEO_TILE_RIGHT + NEO_TILE_COLUMNS + NEO_TILE_ZIGZAG + NEO_MATRIX_COLUMNS + NEO_MATRIX_TOP + NEO_MATRIX_BOTTOM + NEO_MATRIX_ZIGZAG  + NEO_GRB + NEO_KHZ800);
@@ -141,7 +143,7 @@ String serialIn(int s = 0);
 
 // put your setup code here, to run once:
 void setup() {
-  Serial.begin(250000);
+  Serial.begin(9600);
   Serial.setTimeout(25);
   Serial.println('\n');
   //
@@ -199,7 +201,26 @@ void test () {
   //  Reset();
   //  delay(2000);
 
-//  drawDeath(47, -4, BLUE, BLACK, WHITE);
+  gear(20, 7, YELLOW);
+  delay(10000);
+}
+
+void drawDeath (int x, int y, uint16_t color, uint16_t color2, uint16_t color3) {
+  matrix.fillCircle(x, y, 20, color);
+  matrix.fillCircle(x - 12, y + 9, 2, color2);
+  matrix.drawPixel(x - 12, y + 9, color3);
+}
+
+void drawRay (int xI, int yI, uint16_t color) {
+  const int x = 28;
+  const int y = 8;
+  matrix.drawLine(37, 7, x, y, color);
+  matrix.drawLine(33, 3, x, y, color);
+  matrix.drawLine(x, y, xI, yI, color);
+}
+
+void doShip () {
+  //  drawDeath(47, -4, BLUE, BLACK, WHITE);
 //  drawShip(8, 11, 1.5, RED);
 //  drawRay(GREEN, 8, 11);
 //  updateScreen();
@@ -251,16 +272,3 @@ void test () {
   //  ball(RED);
 }
 
-void drawDeath (int x, int y, uint16_t color, uint16_t color2, uint16_t color3) {
-  matrix.fillCircle(x, y, 20, color);
-  matrix.fillCircle(x - 12, y + 9, 2, color2);
-  matrix.drawPixel(x - 12, y + 9, color3);
-}
-
-void drawRay (int xI, int yI, uint16_t color) {
-  const int x = 28;
-  const int y = 8;
-  matrix.drawLine(37, 7, x, y, color);
-  matrix.drawLine(33, 3, x, y, color);
-  matrix.drawLine(x, y, xI, yI, color);
-}
