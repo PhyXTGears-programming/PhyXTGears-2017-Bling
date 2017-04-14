@@ -15,7 +15,7 @@ void gear_UL (int x, int y, uint16_t color) {
   matrix.drawPixel(x - 1, y - 2, BLUE); // center
   matrix.drawPixel(x - 7, y - 4, BLUE); // lower left
   matrix.drawPixel(x - 1, y - 9, BLUE); // upper
-  matrix.fillTriangle(x - 1, y - 2, x - 7, y - 4, x - 1, y - 9, BLUE);
+  matrix.fillTriangle(x - 1, y - 2, x - 7, y - 4, x - 1, y - 10, BLUE);
 }
 
 void gear_UR (int x, int y, uint16_t color) {
