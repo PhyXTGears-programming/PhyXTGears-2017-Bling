@@ -43,7 +43,7 @@ const bool oneOfEach =      true;
 #define WHITE               matrix.Color(255, 255, 255)
 #define BLACK               matrix.Color(0, 0, 0)
 
-#define TESTING             true
+#define TESTING             false
 
 //#define VERTICAL_FONT
 
@@ -237,13 +237,13 @@ void doShip () {
     delay(10);
   }
   const int maxS = 12;
-  for (int i = 0; i < maxS; i++) {
-    drawDeath((matrix.width() + 13) - i, i - 15, planetColor, insetColor, middleDot);
+  for (int i = 0; i < (maxS - 2); i++) {
+    drawDeath((matrix.width() + 16) - i, i - 13, planetColor, insetColor, middleDot);
     //    Serial.println("circle draw");
-    matrix.drawPixel(39, 15, WHITE);
+//    matrix.drawPixel(39, 15, WHITE);
     updateScreen();
     matrix.clear();
-    delay(2500);
+    delay(500);
   }
   for (int i = 0; i < 18; i++) {
     drawDeath(matrix.width() + 7, -4, planetColor, insetColor, middleDot);
@@ -251,7 +251,8 @@ void doShip () {
     matrix.clear();
     delay(50);
   }
-  //  explodingCircle((matrix.width() + 14) - maxS, maxS - 15, 20, planetColor);
+  //                                    18                 15
+  //  explodingCircle((matrix.width() + 16) - maxS, maxS - 13, 20, planetColor);
   delay(500);
   Reset();
   delay(2500);
