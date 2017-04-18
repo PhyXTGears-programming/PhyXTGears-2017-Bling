@@ -24,9 +24,16 @@ void updateScreen() {
   unsigned long d = micros();
   matrix.show();
   c = micros();
-//  Serial.println("Show took " + String(float(c - d) / 1000, 3) + " milliseconds");
+  //  Serial.println("Show took " + String(float(c - d) / 1000, 3) + " milliseconds");
   if (Serial1.available() > 0) {
     roboRioSerial();
+  }
+  if (Serial.available() > 0) {
+    bool a = serialInterp();
+    if (a) {
+      quitRun = true;
+      return;
+    }
   }
 }
 

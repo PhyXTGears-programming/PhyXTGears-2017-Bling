@@ -97,11 +97,9 @@ void runBling (int order[]) {
     Serial.print("d");
     Reset();
     Serial.println("one");
-    if (Serial.available() > 0) {
-      bool a = serialInterp();
-      if (a) {
-        return;
-      }
+    if (quitRun) {
+      quitRun = false;
+      return;
     }
   }
 }

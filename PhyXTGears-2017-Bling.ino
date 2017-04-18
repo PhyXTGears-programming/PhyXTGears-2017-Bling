@@ -47,6 +47,7 @@ const bool oneOfEach =      true;
 #define TESTING             false
 
 #define ROBORIO_SPEED       9600
+#define SERIAL_SPEED        250000
 
 //#define VERTICAL_FONT
 
@@ -57,6 +58,7 @@ bool testing = false;
 // int BRIGHT = 25;
 
 //Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(WIDTH, HEIGHT, 1, NUMBER, MATRIX, NEO_TILE_TOP + NEO_TILE_LEFT + NEO_TILE_COLUMNS + NEO_TILE_ZIGZAG + NEO_MATRIX_COLUMNS + NEO_MATRIX_TOP + NEO_MATRIX_BOTTOM + NEO_MATRIX_ZIGZAG  + NEO_GRB + NEO_KHZ800);
+
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(WIDTH, HEIGHT, 1, NUMBER, MATRIX, NEO_TILE_BOTTOM + NEO_TILE_RIGHT + NEO_TILE_COLUMNS + NEO_TILE_ZIGZAG + NEO_MATRIX_COLUMNS + NEO_MATRIX_TOP + NEO_MATRIX_BOTTOM + NEO_MATRIX_ZIGZAG  + NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel pixyRing   = Adafruit_NeoPixel(pixyRingNum, pixyRingPin,   NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel gearString = Adafruit_NeoPixel(gearStringNum, gearStringPin, NEO_GRB + NEO_KHZ800);
@@ -111,6 +113,7 @@ int blingPrograms[ToRUN];   // order
 bool progBright = false;
 int bright;
 String tN[] = {"", "", "1720"};
+bool quitRun = false;
 
 // ----
 
@@ -144,7 +147,7 @@ void ballShoot (uint16_t rCol, int n = 1, int s = 0);
 
 // put your setup code here, to run once:
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(SERIAL_SPEED);
   Serial.setTimeout(25);
   Serial.println('\n');
   //
@@ -173,6 +176,7 @@ void setup() {
 
 // put your main code here, to run repeatedly:
 void loop() {
+  loopLabel:
   // if running bling
   bool testBool = (testing != TESTING);
   if (!testBool) {
@@ -220,7 +224,7 @@ void drawRay (int xI, int yI, uint16_t color) {
   matrix.drawLine(x, y, xI, yI, color);
 }
 
-void doShip () {
+//void doShip () {
   //  drawDeath(47, -4, BLUE, BLACK, WHITE);
 //  drawShip(8, 11, 1.5, RED);
 //  drawRay(GREEN, 8, 11);

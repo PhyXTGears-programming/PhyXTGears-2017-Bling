@@ -65,6 +65,7 @@ bool serialInterp () {
     in = serialIn();
   } else {
     Serial.print("Using original value: ");
+    serialBoolOver();
   }
   Serial.println(in);
   in.toUpperCase();
@@ -101,7 +102,13 @@ bool serialInterp () {
   }
 }
 
+bool serialBoolO = false;
+
 bool serialBool (String message) {
+  if (serialBoolO) {
+    serialBoolO = false;
+    return true;
+  }
   Serial.print(message);
   String in = serialIn();
   Serial.println(in);
@@ -113,6 +120,10 @@ bool serialBool (String message) {
     Serial.println("No");
     return false;
   }
+}
+
+void serialBoolOver () {
+  serialBoolO = true;
 }
 
 String serialIn (int s) {
