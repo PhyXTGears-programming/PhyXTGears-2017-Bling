@@ -44,7 +44,7 @@ const bool oneOfEach =      true;
 #define WHITE               matrix.Color(255, 255, 255)
 #define BLACK               matrix.Color(0, 0, 0)
 
-#define TESTING             true
+#define TESTING             false
 
 #define ROBORIO_SPEED       9600
 
@@ -138,6 +138,7 @@ void explodingCircle(int x, int y, int r, uint16_t color = WHITE, bool fill = tr
 void drawShipTL (int x, int y, float s, uint16_t color, bool Show = true);
 void drawShip(int x, int y, float s, uint16_t color = WHITE, bool Show = true);
 String serialIn(int s = 0);
+void ballShoot (uint16_t rCol, int n = 1, int s = 0);
 
 // ==============================================
 
@@ -226,6 +227,7 @@ void doShip () {
 //  updateScreen();
 //  delay(99999);
 
+void doShip () {
   const uint16_t shipColor = RED;
   const uint16_t planetColor = BLUE;
   const uint16_t insetColor = BLACK;
@@ -243,9 +245,10 @@ void doShip () {
     delay(10);
   }
   const int maxS = 12;
-  for (int i = 0; i < maxS; i++) {
-    drawDeath((matrix.width() + 18) - i, i - 15, planetColor, insetColor, middleDot);
+  for (int i = 0; i < (maxS - 2); i++) {
+    drawDeath((matrix.width() + 16) - i, i - 13, planetColor, insetColor, middleDot);
     //    Serial.println("circle draw");
+//    matrix.drawPixel(39, 15, WHITE);
     updateScreen();
     matrix.clear();
     delay(500);
@@ -258,7 +261,8 @@ void doShip () {
     matrix.clear();
     delay(50);
   }
-  //  explodingCircle((matrix.width() + 14) - maxS, maxS - 15, 20, planetColor);
+  //                                    18                 15
+  //  explodingCircle((matrix.width() + 16) - maxS, maxS - 13, 20, planetColor);
   delay(500);
   Reset();
   delay(2500);
@@ -270,5 +274,6 @@ void doShip () {
   //  brightOver(255);
   //  matrix.fillCircle(20, 8, 1.5f, matrix.Color(200, 230, 0));
   //  ball(RED);
+  explodingCircle(20, 7, 4, BLUE, true);
 }
 
