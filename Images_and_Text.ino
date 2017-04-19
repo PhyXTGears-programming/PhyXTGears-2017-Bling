@@ -167,8 +167,8 @@ void ballShoot (uint16_t rCol, int n, int s) {
         yFT = pow(yFT, 2);
         yFT += 1;
         matrix.fillCircle(floor(xFT), round(yFT), 1, matrix.Color(200, 230, 0));
-        Serial.println("X: " + String(xF));
-        Serial.println("Xt: " + String(xFT));
+//        Serial.println("X: " + String(xF));
+//        Serial.println("Xt: " + String(xFT));
       }
     }
     matrix.fillRect(36, 7, 4, 9, matrix.Color(193, 123, 52)); // tower

@@ -1,8 +1,20 @@
 void roboRioSerial() {
   String rI = serialIn(1);
-//  rI.toUpperCase();
-  Serial.println(rI);
-  if (rI == "ball") {
+  rI.toLowerCase();
+  Serial.println("Serial 1 Input: " + String(rI));
+  if (rI == "ballc") { 
+    if (ROBOT == "red") { 
+      Serial1.end(); 
+      ball(RED); 
+      Serial1.begin(ROBORIO_SPEED); 
+    } else if (ROBOT == "blue") { 
+      Serial1.end(); 
+      ball(BLUE); 
+      Serial1.begin(ROBORIO_SPEED); 
+    } else { 
+      Serial.println("Color Error"); 
+    } 
+  } else if (rI == "ball") {
     matrix.clear();
     ball(WHITE);
   } else if (rI == "ballb") {
@@ -11,6 +23,10 @@ void roboRioSerial() {
   } else if (rI == "ballr") {
     matrix.clear();
     ball(RED);
+  } else if (rI == "red") {
+    ROBOT = "red";
+  } else if (rI == "blue") {
+    ROBOT = "blue";
   } else {
     Serial.println("Invalid roboRio input");
   }
@@ -85,6 +101,6 @@ String serialIn (int s) {
   } else {
     Serial.println("Serial 1 used");
     while (Serial1.available() < 1) {}
-    return Serial1.readString();
+    return Serial1.readStringUntil('\n');
   }
 }

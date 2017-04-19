@@ -30,7 +30,7 @@ const bool oneOfEach =      true;
 
 #define OVER                true
 //#define BRIGHT              55
-#define BRIGHT              10
+#define BRIGHT              99
 
 #define FONT                FreeSerif12pt7b
 #define FIRST_FONT          FreeSansBoldOblique9pt7b
