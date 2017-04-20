@@ -25,12 +25,12 @@
 #define NUMBER              2   // number of panels
 
 #define PROGS               15  // programs that exist
-#define ToRUN               11   // # to run (if oneOfEach is false) (if true, must equal number of progams being run)
+#define ToRUN               10   // # to run (if oneOfEach is false) (if true, must equal number of progams being run)
 const bool oneOfEach =      true;
 
 #define OVER                true
 //#define BRIGHT              55
-#define BRIGHT              99
+#define BRIGHT              75
 
 #define FONT                FreeSerif12pt7b
 #define FIRST_FONT          FreeSansBoldOblique9pt7b
@@ -53,7 +53,7 @@ const bool oneOfEach =      true;
 
 //  ----------------------------------------  end define  ----------------------------------------  //
 
-bool testing = false;
+bool testing = true;
 
 // int BRIGHT = 25;
 
@@ -104,7 +104,7 @@ int firstLogoW;
 
 //                          // one of each true (false)
 //                      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14
-int progLimit[PROGS] = {1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1};  // Limit for each program (or ratio)
+int progLimit[PROGS] = {1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0};  // Limit for each program (or ratio)
 int progRuns[PROGS];        // Number of times each has been selected (nothing)
 int blingPrograms[ToRUN];   // order
 
@@ -142,6 +142,7 @@ void drawShipTL (int x, int y, float s, uint16_t color, bool Show = true);
 void drawShip(int x, int y, float s, uint16_t color = WHITE, bool Show = true);
 String serialIn(int s = 0);
 void ballShoot (uint16_t rCol, int n = 1, int s = 0);
+void error (String message, int code = 1);
 
 // ==============================================
 
@@ -176,7 +177,7 @@ void setup() {
 
 // put your main code here, to run repeatedly:
 void loop() {
-  loopLabel:
+loopLabel:
   // if running bling
   bool testBool = (testing != TESTING);
   if (!testBool) {
@@ -206,8 +207,12 @@ void test () {
   //  Reset();
   //  delay(2000);
 
-  gear(20, 7, YELLOW);
-  delay(10000);
+  //  gear(20, 7, YELLOW);
+  brightOver(25);
+  matrix.fillScreen(WHITE);
+  updateScreen();
+  delay(1000);
+  Reset();
 }
 
 void drawDeath (int x, int y, uint16_t color, uint16_t color2, uint16_t color3) {
@@ -225,7 +230,7 @@ void drawRay (int xI, int yI, uint16_t color) {
 }
 
 //void doShip () {
-  //  drawDeath(47, -4, BLUE, BLACK, WHITE);
+//  drawDeath(47, -4, BLUE, BLACK, WHITE);
 //  drawShip(8, 11, 1.5, RED);
 //  drawRay(GREEN, 8, 11);
 //  updateScreen();
@@ -252,7 +257,7 @@ void doShip () {
   for (int i = 0; i < (maxS - 2); i++) {
     drawDeath((matrix.width() + 16) - i, i - 13, planetColor, insetColor, middleDot);
     //    Serial.println("circle draw");
-//    matrix.drawPixel(39, 15, WHITE);
+    //    matrix.drawPixel(39, 15, WHITE);
     updateScreen();
     matrix.clear();
     delay(500);

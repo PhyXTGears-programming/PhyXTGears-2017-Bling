@@ -66,3 +66,8 @@ void brightOver (int b) {
   progBright = true;
   bright = b;
 }
+
+void error (String message, int code) {
+  //
+}
+

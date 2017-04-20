@@ -1,5 +1,6 @@
 // 255, 255, 150
 void runBling (int order[]) {
+  Reset();
   int n = ceil(sizeof(blingPrograms) / sizeof(int));
   Serial.println("N: " + String(n));
   Serial.println(sizeof(blingPrograms));
