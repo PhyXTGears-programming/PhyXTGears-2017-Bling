@@ -37,14 +37,22 @@ bool serialInterp () {
   //    Serial.println("Serial is disabled");
   //    return false;
   //  }
-  while (Serial.available() > 0) {
-    Serial.readString();
+  String in;
+  in = serialIn();
+  in.toUpperCase();
+  Serial.println(in);
+  if (!(in == "TEST" || in == "TEST\n" || in == "BLING" || in == "BLING\n" || in == "TEAM" || in == "TEAM\n" || in == "OFF" || in == "OFF\n" || in == "ON" || in == "ON\n")) {
+    Serial.println("What would you like to do?");
+    Serial.println("\ttest");
+    Serial.println("\tbling");
+    Serial.println("\tteam");
+    Serial.println("\toff");
+    Serial.println("\ton");
+    in = serialIn();
+  } else {
+    Serial.print("Using original value: ");
+    serialBoolOver();
   }
-  Serial.println("What would you like to do?");
-  Serial.println("\ttest");
-  Serial.println("\tbling");
-  Serial.println("\tteam");
-  String in = serialIn();
   Serial.println(in);
   in.toUpperCase();
   if (in == "TEST" || in == "TEST\n") {
@@ -63,9 +71,9 @@ bool serialInterp () {
     }
   } else if (in == "TEAM" || in == "TEAM\n") {
     Serial.print("Team Number 1: ");
-    int teamA = Serial.parseInt();
+    int teamA = serialInt();
     Serial.print("Team Number 2: ");
-    int teamB = Serial.parseInt();
+    int teamB = serialInt();
     if (serialBool("Would you like to change teams to " + String(teamA) + " and " + String(teamB) + "? ")) {
       tN[0] = teamA;
       tN[1] = teamB;
@@ -73,14 +81,33 @@ bool serialInterp () {
     } else {
       return false;
     }
-  }
-  else {
+  } else if (in == "OFF" || in == "OFF\n") {
+    if (serialBool("Would you like to turn off? ")) {
+      turnOff = true;
+      return true;
+    } else {
+      return false;
+    }
+  } else if (in == "ON" || in == "ON\n") {
+    if (serialBool("Would you like to turn on? ")) {
+      turnOff = false;
+      return false;
+    } else {
+      return false;
+    }
+  } else {
     Serial.println("invalid");
     return false;
   }
 }
 
+bool serialBoolO = false;
+
 bool serialBool (String message) {
+  if (serialBoolO) {
+    serialBoolO = false;
+    return true;
+  }
   Serial.print(message);
   String in = serialIn();
   Serial.println(in);
@@ -94,6 +121,10 @@ bool serialBool (String message) {
   }
 }
 
+void serialBoolOver () {
+  serialBoolO = true;
+}
+
 String serialIn (int s) {
   if (s == 0) {
     while (Serial.available() < 1) {}
@@ -103,4 +134,10 @@ String serialIn (int s) {
     while (Serial1.available() < 1) {}
     return Serial1.readStringUntil('\n');
   }
+}
+
+int serialInt () {
+  while (Serial.available() < 1) {}
+  String s =  Serial.readString();
+  return s.toInt();
 }

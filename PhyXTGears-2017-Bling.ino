@@ -54,6 +54,7 @@ const bool oneOfEach =      true;
 //  ----------------------------------------  end define  ----------------------------------------  //
 
 bool testing = true;
+bool turnOff = false;
 
 // int BRIGHT = 25;
 
@@ -177,12 +178,15 @@ void setup() {
 
 // put your main code here, to run repeatedly:
 void loop() {
-loopLabel:
   // if running bling
   bool testBool = (testing != TESTING);
-  if (!testBool) {
+  if (turnOff) {
+    delay(100);
+  } else if (!testBool) {
+    Reset();
     Serial.println("Starting Bling...");
     bling();
+    Reset();
   } else {  // if testing
     Serial.println("Starting Test...");
     test();
@@ -201,6 +205,8 @@ void bling () {
   delay(100);
 }
 
+int tempB = BRIGHT;
+
 // for running test code
 void test () {
   //  sinWaveM(matrix.Color(255, 255, 255), 0, 2500, 25, 2);
@@ -208,11 +214,15 @@ void test () {
   //  delay(2000);
 
   //  gear(20, 7, YELLOW);
-  brightOver(25);
   matrix.fillScreen(WHITE);
-  updateScreen();
+  matrix.setBrightness(tempB);
+  matrix.show();
   delay(1000);
-  Reset();
+  Serial.println(tempB);
+  if (Serial.available() > 0) {
+    tempB = serialInt();
+    Serial.println("Using brightness " + String(tempB) + ".");
+  }
 }
 
 void drawDeath (int x, int y, uint16_t color, uint16_t color2, uint16_t color3) {
