@@ -1,20 +1,28 @@
+String output;
+
 void blingSelect () {
   Serial.println("Start bling selection...");
   unsigned long s = micros();
   int n = -10;
   bool ru = true;
+  int tr = 1;
   while (ru) {
+    Serial.print("Attempt " + String(tr) + ":");
     n = selectRandArray();
-    Serial.println("return");
     if (n > -3) {
       ru = false;
-      Serial.println("false");
+      Serial.println(" success!");
+    } else {
+      Serial.println(" fail");
     }
+    tr++;
   }
-  Serial.println("selected random array containing " + String(n) + " programs in " + String(float(micros() - s) / 1000, 3) + " milliseconds");
+  Serial.println(output);
+  Serial.println("selected random array containing " + String(n) + " programs in " + String(float(micros() - s) / 1000, 3) + " milliseconds\n");
 }
 
 int selectRandArray () {
+  output = "";
   for (int i = 0; i < PROGS; i++) {
     progRuns[i] = 0;
   }
@@ -39,7 +47,8 @@ int selectRandArray () {
         blingPrograms[i] = val;
         i++;
         f = 0;
-        Serial.println(String(i) + ": " + String(val));
+        output += (String(i) + ": " + String(val));
+        output += "\n";
       } else {
         f++;
       }
@@ -48,7 +57,8 @@ int selectRandArray () {
       }
     }
     for (int k = 0; k < PROGS; k++) {
-      Serial.println("L: " + String(progLimit[k]) + " R: " + String(progRuns[k]));
+      output += ("L: " + String(progLimit[k]) + " R: " + String(progRuns[k]));
+      output += "\n";
     }
     return ti;
   } else {
