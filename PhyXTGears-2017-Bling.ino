@@ -53,7 +53,7 @@ const bool oneOfEach =      true;
 
 //  ----------------------------------------  end define  ----------------------------------------  //
 
-bool testing = true;
+bool testing = false;
 bool turnOff = false;
 
 // int BRIGHT = 25;
