@@ -8,7 +8,7 @@ void gear (int x, int y, uint16_t color) {
   gear_LC(x, y, color); // Lower Center
   // ---
   matrix.drawPixel(x, y, BLUE); // Center
-  matrix.show();
+  updateScreen(); // UPDATESCREEN
 }
 
 void gear_UL (int x, int y, uint16_t color) {

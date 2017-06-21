@@ -49,9 +49,13 @@ const bool oneOfEach =      true;
 #define ROBORIO_SPEED       9600
 #define SERIAL_SPEED        250000
 
+#define SLOWPIN             A1
+#define SLOWDIV             1
+#define SLOW                false
+
 //#define VERTICAL_FONT
 
-//  ----------------------------------------  end define  ----------------------------------------  //
+//  ----------------------------------------  end define  ----------------------------------------  \\
 
 bool testing = false;
 bool turnOff = false;
@@ -125,7 +129,7 @@ String ROBOT;
 void zigZag(unsigned long Stop, uint16_t color = matrix.Color(255, 255, 255), uint16_t color2 = matrix.Color(255, 255, 255), int d = 100, int gap = 1);
 void printText(String phrase, int color[], int run_time = 0, bool scroll = true, bool upperCase = true, int Skip = 0, int pixOffset = 0); //run_time should be set to at least 100 if your font is at 12pt
 void printBitMap(int b[], unsigned long Stop, bool scroll = false); //Prints from bitmap, "int b[]".
-void rectangleZoom(int x, int y, int width, int height, int color, int Delay = 99, bool noFill = false); //Creates rectangles inside rectangle one by one.
+void rectangleZoom(int x, int y, int width, int height, uint16_t color, int Delay = 99, bool noFill = false); //Creates rectangles inside rectangle one by one.
 void rainbow(); //Fills matrix with colors then cycles through color wheel. The rough time that this takes to execute is: 4 Seconds.
 void strobePixel(unsigned long Time, int Delay, int color, int num, bool Rand); //Strobes random pixel on screen then clears screen and strobes another one.
 void theaterChase(int Skips = 1, int Delay = 0, int color = matrix.Color(255, 255, 255), bool bow = false); //Goes through all pixels in matrix clearing screen every time a new pixel is shown.
@@ -161,7 +165,7 @@ void setup() {
   // load bitmap doesn't work
   // loadBitmap();
   matrix.begin();
-  matrix.show();
+  updateScreen(); //UPDATESCREEN
   gearString.begin();
   gearString.show();
   matrix.setTextWrap(false); //Does weird things if you don't include this.
@@ -216,7 +220,7 @@ void test () {
   //  gear(20, 7, YELLOW);
   matrix.fillScreen(WHITE);
   matrix.setBrightness(tempB);
-  matrix.show();
+  updateScreen(); //UPDATESCREEN
   delay(1000);
   Serial.println(tempB);
   if (Serial.available() > 0) {
@@ -276,7 +280,7 @@ void doShip () {
     drawDeath(matrix.width() + 7, -4, planetColor, insetColor, middleDot);
     drawShip(25 - i, matrix.height() - floor(i / 3.0), 1.5, shipColor, false);
     drawRay(25 - i, matrix.height() - floor(i / 3.0), GREEN);
-    matrix.show();
+    updateScreen(); //UPDATESCREEN
     matrix.clear();
     delay(50);
   }

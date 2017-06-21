@@ -62,7 +62,7 @@
     matrix.setCursor(0, 0);
     matrix.print("GAME OVER");
   }
-  matrix.show();
+  updateScreen(); //UPDATESCREEN
   }
 */
 

@@ -28,7 +28,7 @@ void printBitmap(unsigned char b[]) {
     }
   }
   unsigned long d = micros();
-  matrix.show();
+  updateScreen(); //UPDATESCREEN
   unsigned long c = micros();
   Serial.print("printed a " + String(l) + "x" + String(w) + " array (" + String(l * w) + " pixels) in " + String(float(c - s) / 1000, 3) + " milliseconds.");
   Serial.println(" Show took " + String(float(c - d) / 1000, 3) + " milliseconds");

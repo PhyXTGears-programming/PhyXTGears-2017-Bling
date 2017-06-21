@@ -58,7 +58,7 @@ void sinWaveM (uint16_t color, int Delay, unsigned long Stop, float n, float s) 
       c = 0 - c;
       ad = true;
     }
-    matrix.show();
+    updateScreen(); //UPDATESCREEN
     matrix.clear();
 //    delay(Delay);
   }

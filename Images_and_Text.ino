@@ -29,7 +29,7 @@ void printText (String Phrase, int color[], int run_time, bool scroll, bool uppe
   }
 }
 
-void rectangleZoom (int x, int y, int width, int height, int color, int Delay, bool noFill) {
+void rectangleZoom (int x, int y, int width, int height, uint16_t color, int Delay, bool noFill) {
   int iterations = min(width / 2, height / 2);
   for (int i = 0; i < iterations; i++) {
     matrix.drawRect(x, y, width, height, color);

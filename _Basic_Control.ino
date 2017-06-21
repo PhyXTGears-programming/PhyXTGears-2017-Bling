@@ -35,6 +35,11 @@ void updateScreen() {
       return;
     }
   }
+  if (SLOW) {
+    float r = analogRead(SLOWPIN);
+    r -= 65;
+    delay(floor(r / SLOWDIV));
+  }
 }
 
 uint16_t Wheel(byte WheelPos) {
