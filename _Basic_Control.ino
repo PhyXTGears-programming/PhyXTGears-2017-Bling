@@ -15,7 +15,8 @@ void brightnessControl() {
 }
 
 void clearScreen() {
-  matrix.fillScreen(BLACK);
+  // matrix.fillScreen(BLACK);
+  matrix.clear();
 }
 
 void updateScreen() {

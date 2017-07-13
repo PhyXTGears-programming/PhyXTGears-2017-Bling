@@ -89,7 +89,7 @@ void rDraw(unsigned long Stop, uint16_t color, int n, int Delay, bool Random) {
     if (Random) {
       color = matrix.Color(random(250), random(220), random(170));
     }
-    matrix.drawPixel(random(0, matrix.width() + 1), random(0, matrix.height() + 1), color);
+    matrix.drawPixel(random(matrix.width()), random(matrix.height()), color);
     if (i % n == 0 && i != 0) {
       updateScreen();
       delay(Delay);

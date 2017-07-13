@@ -8,9 +8,9 @@
 #include <Fonts/FreeSerif12pt7b.h>
 #include <EEPROM.h>
 
-//  ---------------------------------------  begin define  ---------------------------------------  //
+//  ---------------------------------------  begin define  ---------------------------------------  \\
 
-#define MATRIX              6
+#define MATRIX              6 // 15360 bits ----- 1920 bytes
 #define pixyRingPin         8
 #define gearStringPin       7
 
@@ -133,7 +133,7 @@ void rectangleZoom(int x, int y, int width, int height, uint16_t color, int Dela
 void rainbow(); //Fills matrix with colors then cycles through color wheel. The rough time that this takes to execute is: 4 Seconds.
 void strobePixel(unsigned long Time, int Delay, int color, int num, bool Rand); //Strobes random pixel on screen then clears screen and strobes another one.
 void theaterChase(int Skips = 1, int Delay = 0, int color = matrix.Color(255, 255, 255), bool bow = false); //Goes through all pixels in matrix clearing screen every time a new pixel is shown.
-void rDraw(unsigned long Stop, uint16_t color, int n = 3, int Delay = 10, bool Random = false); //Draws random pixels onto screen does NOT clear every time new pixel is shwon.
+void rDraw(unsigned long Stop, uint16_t color, int n = 3, int Delay = 10, bool Random = false); //Draws random pixels onto screen does NOT clear every time new pixel is shown.
 void theaterChaseRainbow(int Skips, int Delay = 10); //Does same thing as theater chase only this time it changes color from color wheel. The rough time that this takes to execute is: 3 Seconds.
 void brightnessControl(); //Gets value from sensor then divides value by 8.6 sets brightness to that value.
 void drawShape(int shape, int values[], int color[]); //Rectangle: 0, Circle: 1, Triangle: 2, Line: 3, Pixels: 4, RoundRectangle: 5.
